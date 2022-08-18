@@ -1,0 +1,3 @@
+bergheim:
+    resource: '@ContaoBergheimBundle/Controller'
+    type: annotation

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_bm_poi.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_bm_poi.poi">
+        <source>Point of Interest</source>
+        <target>Point of Interest</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.showcase">
+        <source>Showcase</source>
+        <target>Schaufenster</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
