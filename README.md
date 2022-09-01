@@ -1,2 +1,1 @@
 # contao-bergheim-bundle
-test
