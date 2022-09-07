@@ -44,25 +44,25 @@
             </p>
             <p class="social-media">
                 <?php if (!empty($this->facebookUrl)): ?>
-                    <a href="<?= $this->facebookLink ?>" class="facebook">Facebook</a>
+                    <a href="<?= $this->facebookUrl ?>" class="facebook" target="_blank">Facebook</a>
                 <?php endif; ?>
                 <?php if (!empty($this->instagramUrl)): ?>
-                    <a href="<?= $this->instagramUrl ?>" class="instagram">Instagram</a>
+                    <a href="<?= $this->instagramUrl ?>" class="instagram" target="_blank">Instagram</a>
                 <?php endif; ?>
                 <?php if (!empty($this->tiktokUrl)): ?>
-                    <a href="<?= $this->tiktokUrl ?>" class="tiktok">TikTok</a>
+                    <a href="<?= $this->tiktokUrl ?>" class="tiktok" target="_blank">TikTok</a>
                 <?php endif; ?>
                 <?php if (!empty($this->youtubeUrl)): ?>
-                    <a href="<?= $this->youtubeUrl ?>" class="youtube">YouTube</a>
+                    <a href="<?= $this->youtubeUrl ?>" class="youtube" target="_blank">YouTube</a>
                 <?php endif; ?>
                 <?php if (!empty($this->pinterestUrl)): ?>
-                    <a href="<?= $this->pinterestUrl ?>" class="pinterest">Pinterest</a>
+                    <a href="<?= $this->pinterestUrl ?>" class="pinterest" target="_blank">Pinterest</a>
                 <?php endif; ?>
                 <?php if (!empty($this->xingUrl)): ?>
-                    <a href="<?= $this->xingUrl ?>" class="xing">Xing</a>
+                    <a href="<?= $this->xingUrl ?>" class="xing" target="_blank">Xing</a>
                 <?php endif; ?>
                 <?php if (!empty($this->linkedinUrl)): ?>
-                    <a href="<?= $this->linkedinUrl ?>" class="linkedin">LinkedIn</a>
+                    <a href="<?= $this->linkedinUrl ?>" class="linkedin" target="_blank">LinkedIn</a>
                 <?php endif; ?>
             </p>
         </div>
