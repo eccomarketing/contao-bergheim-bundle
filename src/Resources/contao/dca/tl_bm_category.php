@@ -1,10 +1,7 @@
 <?php
-use Contao\System;
+
 use Contao\DC_Table;
 use Contao\DataContainer;
-use Contao\CoreBundle\EventListener\Widget\HttpUrlListener;
-
-System::loadLanguageFile('tl_bm_category');
 
 $GLOBALS['TL_DCA']['tl_bm_category'] = array
 (
@@ -13,6 +10,7 @@ $GLOBALS['TL_DCA']['tl_bm_category'] = array
     (
         'dataContainer'               => DC_Table::class,
         'enableVersioning'            => true,
+        'markAsCopy'                  => 'title',
         'sql' => array
         (
             'keys' => array
@@ -27,12 +25,13 @@ $GLOBALS['TL_DCA']['tl_bm_category'] = array
     (
         'sorting' => array
         (
-            'mode'                    => DataContainer::MODE_UNSORTED,
-            'flag'                    => 1
+            'mode'                    => DataContainer::MODE_SORTABLE,
+            'fields'                  => array('title'),
+            'panelLayout'             => 'sort,search,limit',
         ),
         'label' => array
         (
-            'fields'                  => array('id', 'title'),
+            'fields'                  => array('title', 'tstamp'),
             'showColumns'             => true
         ),
         'global_operations' => array
@@ -54,15 +53,8 @@ $GLOBALS['TL_DCA']['tl_bm_category'] = array
             ),
             'copy' => array
             (
-                'href'                => 'act=paste&amp;mode=copy',
-                'icon'                => 'copy.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset()"',
-            ),
-            'cut' => array
-            (
-                'href'                => 'act=paste&amp;mode=cut',
-                'icon'                => 'cut.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset()"'
+                'href'                => 'act=copy',
+                'icon'                => 'copy.svg'
             ),
             'delete' => array
             (
@@ -81,7 +73,7 @@ $GLOBALS['TL_DCA']['tl_bm_category'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{config_legend},title;',
+        'default'                     => '{title_legend},title;',
     ),
 
     // Fields
@@ -93,12 +85,16 @@ $GLOBALS['TL_DCA']['tl_bm_category'] = array
         ),
         'tstamp' => array
         (
+            'sorting'                 => true,
+            'flag'                    => DataContainer::SORT_DAY_DESC,
+            'eval'                    => array('rgxp'=>'datim'),
             'sql'                     => "int(10) unsigned NOT NULL default 0"
         ),
         'title' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
+            'sorting'                 => true,
             'search'                  => true,
             'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"

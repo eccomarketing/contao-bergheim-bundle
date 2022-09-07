@@ -1,0 +1,30 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_bm_tag.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_bm_tag.title_legend">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.title.0">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.title.1">
+        <source>Please enter the tag title.</source>
+        <target>Bitte geben Sie den Tag-Titel ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.alias.0">
+        <source>Tag alias</source>
+        <target>Tag-Alias</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.alias.1">
+        <source>The tag alias is a unique reference to the poi item which can be called instead of its numeric ID.</source>
+        <target>Der Tag-Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.tstamp.0">
+        <source>Revision date</source>
+        <target>Änderungsdatum</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

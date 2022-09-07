@@ -1,0 +1,22 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_bm_category.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_bm_category.title_legend">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_category.title.0">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_category.title.1">
+        <source>Please enter the branch title.</source>
+        <target>Bitte geben Sie den Branchen-Titel ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_category.tstamp.0">
+        <source>Revision date</source>
+        <target>Änderungsdatum</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

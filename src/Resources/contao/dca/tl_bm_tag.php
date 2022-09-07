@@ -2,8 +2,9 @@
 
 use Contao\DC_Table;
 use Contao\DataContainer;
+use Oveleon\ContaoBergheimBundle\Tag;
 
-$GLOBALS['TL_DCA']['tl_bm_branch'] = array
+$GLOBALS['TL_DCA']['tl_bm_tag'] = array
 (
     // Config
     'config' => array
@@ -15,7 +16,8 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
         (
             'keys' => array
             (
-                'id' => 'primary'
+                'id' => 'primary',
+                'alias' => 'index'
             )
         )
     ),
@@ -31,7 +33,7 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
         ),
         'label' => array
         (
-            'fields'                  => array('title', 'tstamp'),
+            'fields'                  => array('title', 'alias', 'tstamp'),
             'showColumns'             => true
         ),
         'global_operations' => array
@@ -49,7 +51,7 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
             'edit' => array
             (
                 'href'                => 'act=edit',
-                'icon'                => 'edit.svg'
+                'icon'                => 'edit.svg',
             ),
             'copy' => array
             (
@@ -73,7 +75,7 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{title_legend},title,jumpTo;{icon_legend},iconSRC;',
+        'default'                     => '{title_legend},title,alias;',
     ),
 
     // Fields
@@ -99,21 +101,17 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
             'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
-        'jumpTo' => array
+        'alias' => array
         (
             'exclude'                 => true,
-            'inputType'               => 'pageTree',
-            'foreignKey'              => 'tl_page.title',
-            'eval'                    => array('mandatory'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr'),
-            'sql'                     => "int(10) unsigned NOT NULL default 0",
-            'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
+            'inputType'               => 'text',
+            'search'                  => true,
+            'eval'                    => ['rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>255, 'tl_class'=>'w50 clr'],
+            'save_callback' => array
+            (
+                array(Tag::class, 'generateAlias')
+            ),
+            'sql'                     => "varchar(255) BINARY NOT NULL default ''"
         ),
-        'iconSRC' => array
-        (
-            'exclude'                 => true,
-            'inputType'               => 'fileTree',
-            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'],
-            'sql'                     => "binary(16) NULL"
-        )
     )
 );

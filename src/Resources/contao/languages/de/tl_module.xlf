@@ -1,0 +1,82 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_module.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_module.poi_listMode.0">
+        <source>POI filter mode</source>
+        <target>POI Filter-Modus</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_listMode.1">
+        <source>Please select a POI filter mode to narrow down the list.</source>
+        <target>Bitte wählen Sie einen POI Filter-Modus aus, um die Liste einzuschränken.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_branches.0">
+        <source>POI branches</source>
+        <target>POI-Branchen</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_branches.1">
+        <source>Please select one or more poi branches.</source>
+        <target>Bitte wählen Sie ein oder mehrere POI-Branchen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_categories.0">
+        <source>POI categories</source>
+        <target>POI-Kategorien</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_categories.1">
+        <source>Please select one or more poi categories.</source>
+        <target>Bitte wählen Sie ein oder mehrere POI-Kategorien.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_readerModule.0">
+        <source>POI detail page</source>
+        <target>POI-Detailseite</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_readerModule.1">
+        <source>Automatically switch to the detail page if an item has been selected.</source>
+        <target>Automatisch zum Detailseite wechseln, wenn ein POI ausgewählt wurde.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_addTags.0">
+        <source>Activate tag filter</source>
+        <target>Tag-Filter aktivieren</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_addTags.1">
+        <source>Here you can seleactivate the tag filter for the frontend.</source>
+        <target>Hier können Sie die Tag-Filterung im Frontend aktivieren.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_template.0">
+        <source>POI template</source>
+        <target>POI-Template</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_template.1">
+        <source>Here you can select a poi template.</source>
+        <target>Hier können Sie ein POI-Template auswählen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_order.0">
+        <source>Sort order</source>
+        <target>Sortierreihenfolge</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_order.1">
+        <source>Here you can choose the sort order.</source>
+        <target>Hier können Sie die Sortierreihenfolge festlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_imgSize.0">
+        <source>Image size (image gallery)</source>
+        <target>Bildgröße (Bildergalerie)</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_imgSize.1">
+        <source>Here you can set the image gallery dimensions and the resize mode.</source>
+        <target>Hier können Sie die Abmessungen der Bildergalerie und den Skalierungsmodus festlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.all">
+        <source>All</source>
+        <target>Alle</target>
+      </trans-unit>
+      <trans-unit id="tl_module.branches">
+        <source>Branches</source>
+        <target>Branchen</target>
+      </trans-unit>
+      <trans-unit id="tl_module.categories">
+        <source>Categories (rudimentary)</source>
+        <target>Kategorien (Rudimentär)</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

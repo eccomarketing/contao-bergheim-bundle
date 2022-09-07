@@ -1,0 +1,16 @@
+
+<div class="poi_default block<?= $this->class ?>">
+
+    <?php if ($this->addImage): ?>
+        <?php $this->insert('image', $this->arrData); ?>
+    <?php endif; ?>
+
+    <p class="more"><?= $this->linkMore ?></p>
+
+    <h2><?= $this->title ?></h2>
+
+    <div class="ce_text block">
+        <?= $this->teaser ?>
+    </div>
+
+</div>

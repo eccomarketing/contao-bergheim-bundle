@@ -1,0 +1,67 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/modules.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="MOD.poi.0">
+        <source>POI &amp; Showcases</source>
+        <target>POI &amp; Schaufenster</target>
+      </trans-unit>
+      <trans-unit id="MOD.poi.1">
+        <source>Manage POIs &amp; Showcases</source>
+        <target>POIs &amp; Schaufenster verwalten</target>
+      </trans-unit>
+      <trans-unit id="MOD.branch.0">
+        <source>Branches</source>
+        <target>Branchen</target>
+      </trans-unit>
+      <trans-unit id="MOD.branch.1">
+        <source>Manage branches</source>
+        <target>Branchen verwalten</target>
+      </trans-unit>
+      <trans-unit id="MOD.category.0">
+        <source>Categories</source>
+        <target>Kategorien</target>
+      </trans-unit>
+      <trans-unit id="MOD.category.1">
+        <source>Manage categories for POIs &amp; Showcases</source>
+        <target>POI- &amp; Schaufenster-Kategorien verwalten</target>
+      </trans-unit>
+      <trans-unit id="MOD.tag.0">
+        <source>Tags</source>
+        <target>Tags</target>
+      </trans-unit>
+      <trans-unit id="MOD.tag.1">
+        <source>Manage poi tags</source>
+        <target>POI-Tags verwalten</target>
+      </trans-unit>
+      <trans-unit id="MOD.config.0">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="MOD.config.1">
+        <source>Adjust the Bergheim configuration</source>
+        <target>Die Bergheim-Konfiguration anpassen</target>
+      </trans-unit>
+
+      <trans-unit id="FMD.bergheim">
+        <source>Bergheim</source>
+        <target>Bergheim</target>
+      </trans-unit>
+      <trans-unit id="FMD.poi_list.0">
+        <source>POI-List</source>
+        <target>POI-Liste</target>
+      </trans-unit>
+      <trans-unit id="FMD.poi_list.1">
+        <source>Adds a list of poi items to the page</source>
+        <target>Fügt der Seite eine POI-Liste hinzu</target>
+      </trans-unit>
+      <trans-unit id="FMD.poi_reader.0">
+        <source>POI detail page</source>
+        <target>POI-Detailseite</target>
+      </trans-unit>
+      <trans-unit id="FMD.poi_reader.1">
+        <source>Shows the details of a poi item</source>
+        <target>Stellt einen einzelnen POI-Beitrag dar</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

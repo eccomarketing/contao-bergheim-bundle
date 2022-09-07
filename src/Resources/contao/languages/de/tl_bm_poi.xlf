@@ -10,6 +10,399 @@
         <source>Showcase</source>
         <target>Schaufenster</target>
       </trans-unit>
+      <trans-unit id="tl_bm_poi.title.0">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.title.1">
+        <source>Please enter the poi title.</source>
+        <target>Bitte geben Sie den POI-Titel ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.author.0">
+        <source>Author</source>
+        <target>Autor</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.author.1">
+        <source>Here you can change the author of the poi item.</source>
+        <target>Hier können Sie den Autor des POI ändern.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.branch.0">
+        <source>Branch</source>
+        <target>Branche</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.branch.1">
+        <source>Please select the branch of the POI record.</source>
+        <target>Bitte wählen Sie die Branche des POI-Datensatzes.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.alias.0">
+        <source>POI alias</source>
+        <target>POI-Alias</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.alias.1">
+        <source>The poi alias is a unique reference to the poi item which can be called instead of its numeric ID.</source>
+        <target>Der POI-Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.type.0">
+        <source>Type</source>
+        <target>Typ</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.type.1">
+        <source>Please choose the type of poi record.</source>
+        <target>Bitte wählen Sie den Typ des POI-Datensatzes.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.pageTitle.0">
+        <source>Meta title</source>
+        <target>Meta-Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.pageTitle.1">
+        <source>Here you can add a custom meta title to overwrite the default page title.</source>
+        <target>Hier können Sie einen individuellen Meta-Titel eingeben, um den Standard-Seitentitel zu überschreiben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.metaDescription.0">
+        <source>Meta description</source>
+        <target>Meta-Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.metaDescription.1">
+        <source>Here you can add a custom meta description to overwrite the default page description.</source>
+        <target>Hier können Sie eine individuelle Meta-Beschreibung eingeben, um die Standard-Seitenbeschreibung zu überschreiben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.robots.0">
+        <source>Robots tag</source>
+        <target>Robots-Tag</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.robots.1">
+        <source>Here you can overwrite how search engines handle the news item.</source>
+        <target>Hier legen Sie fest, wie Suchmaschinen den Beitrag behandeln.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.subtitle.0">
+        <source>Subheadline</source>
+        <target>Unterüberschrift</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.subtitle.1">
+        <source>Here you can enter a subheadline.</source>
+        <target>Hier können Sie eine Unterüberschrift eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.teaser.0">
+        <source>POI teaser</source>
+        <target>Teasertext</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.teaser.1">
+        <source>The poi teaser can be shown in a poi list instead of the full description. A &quot;read more …&quot; link will be added automatically.</source>
+        <target>Der Teasertext kann in einer POI-Liste anstatt des ganzen Beitrags angezeigt werden. Ein &quot;Weiterlesen …&quot;-Link wird automatisch hinzugefügt.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.description.0">
+        <source>Description</source>
+        <target>Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.description.1">
+        <source>Here you can enter the poi description.</source>
+        <target>Hier können Sie die Beschreibung des POIs eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.extraDescription.0">
+        <source>Location description</source>
+        <target>Lagebeschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.extraDescription.1">
+        <source>Here you can enter the poi location description.</source>
+        <target>Hier können Sie die Lagebeschreibung des POIs eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.logoSRC.0">
+        <source>Logo</source>
+        <target>Logo</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.logoSRC.1">
+        <source>Here you can select the poi image.</source>
+        <target>Hier können Sie das Logo des POIs auswählen.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.mainImageSRC.0">
+        <source>Cover</source>
+        <target>Titelbild</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.mainImageSRC.1">
+        <source>Here you can select the poi cover.</source>
+        <target>Hier können Sie das Titelbild des POIs auswählen.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.imagesSRC.0">
+        <source>Images</source>
+        <target>Bilder</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.imagesSRC.1">
+        <source>Here you can select additional poi images.</source>
+        <target>Hier können Sie weitere Bilder des POIs auswählen.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.company.0">
+        <source>Company</source>
+        <target>Firma</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.company.1">
+        <source>Here you can enter a company name.</source>
+        <target>Hier können Sie einen Firmennamen eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.website.0">
+        <source>Website</source>
+        <target>Webseite</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.website.1">
+        <source>Here you can enter a web address.</source>
+        <target>Hier können Sie eine Web-Adresse eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.postal.0">
+        <source>Postal code</source>
+        <target>Postleitzahl</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.postal.1">
+        <source>Please enter the postal code.</source>
+        <target>Bitte geben Sie die Postleitzahl ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.city.0">
+        <source>City</source>
+        <target>Ort</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.city.1">
+        <source>Please enter the name of the city.</source>
+        <target>Bitte geben Sie den Namen des Ortes ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.street.0">
+        <source>Street</source>
+        <target>Straße</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.street.1">
+        <source>Please enter the street name and number.</source>
+        <target>Bitte geben Sie den Straßennamen und die Hausnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.houseNumber.0">
+        <source>House number</source>
+        <target>Hausnummer</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.houseNumber.1">
+        <source>Please enter the house number.</source>
+        <target>Bitte geben Sie die Hausnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.phone.0">
+        <source>Phone number</source>
+        <target>Telefonnummer</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.phone.1">
+        <source>Please enter the phone number.</source>
+        <target>Bitte geben Sie die Telefonnummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.mobile.0">
+        <source>Cell phone number</source>
+        <target>Handynummer</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.mobile.1">
+        <source>Please enter the cell phone number.</source>
+        <target>Bitte geben Sie die Handynummer ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.email.0">
+        <source>E-mail address</source>
+        <target>E-Mail-Adresse</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.email.1">
+        <source>Please enter a valid e-mail address.</source>
+        <target>Bitte geben Sie eine gültige E-Mail-Adresse ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHours.0">
+        <source>Opening hours</source>
+        <target>Öfnungszeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHours.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.lat.0">
+        <source>Latitude</source>
+        <target>Breitengrad</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.lat.1">
+        <source>Please enter the latitude.</source>
+        <target>Bitte geben Sie den Breitengrad ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.lng.0">
+        <source>Longitude</source>
+        <target>Längengrad</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.lng.1">
+        <source>Please enter the longitude.</source>
+        <target>Bitte geben Sie den Längengrad ein.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_bm_poi.facebookUrl.0">
+        <source>Facebook</source>
+        <target>Facebook</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.facebookUrl.1">
+        <source>Here you can specify the Facebook link.</source>
+        <target>Hier kann der Facebook-Link angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.instagramUrl.0">
+        <source>Instagram</source>
+        <target>Instagram</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.instagramUrl.1">
+        <source>Here you can specify the Instragram link.</source>
+        <target>Hier kann der Instagram-Link angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.tiktokUrl.0">
+        <source>TikTok</source>
+        <target>TikTok</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.tiktokUrl.1">
+        <source>Here you can specify the TikTok link.</source>
+        <target>Hier kann der TikTok-Link angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.youtubeUrl.0">
+        <source>YouTube</source>
+        <target>YouTube</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.youtubeUrl.1">
+        <source>Here you can specify the YouTube link.</source>
+        <target>Hier kann der YouTube-Link angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.pinterestUrl.0">
+        <source>Pinterest</source>
+        <target>Pinterest</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.pinterestUrl.1">
+        <source>Here you can specify the Pinterest link.</source>
+        <target>Hier kann der Pinterest-Link angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.xingUrl.0">
+        <source>Xing</source>
+        <target>Xing</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.xingUrl.1">
+        <source>Here you can specify the Xing link.</source>
+        <target>Hier kann der Xing-Link angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.linkedinUrl.0">
+        <source>LinkedIn</source>
+        <target>LinkedIn</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.linkedinUrl.1">
+        <source>Here you can specify the LinkedIn link.</source>
+        <target>Hier kann der LinkedIn-Link angegeben werden.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.categories.0">
+        <source>Categories</source>
+        <target>Kategorien</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.categories.1">
+        <source>Please select the categories of the POI record.</source>
+        <target>Bitte wählen Sie die Kategorien des POI-Datensatzes.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.tags.0">
+        <source>Tags</source>
+        <target>Tags</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.tags.1">
+        <source>Please select the tags of the POI record.</source>
+        <target>Bitte wählen Sie die Tags des POI-Datensatzes.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.cssClass.0">
+        <source>CSS class</source>
+        <target>CSS-Klasse</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.cssClass.1">
+        <source>Here you can enter one or more classes.</source>
+        <target>Hier können Sie eine oder mehrere Klassen eingeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.published.0">
+        <source>Publish poi</source>
+        <target>POI veröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.published.1">
+        <source>Make the poi publicly visible on the website.</source>
+        <target>Den POI auf der Webseite anzeigen.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.publishData.0">
+        <source>Share poi</source>
+        <target>POI freigeben</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.publishData.1">
+        <source>Share the POI on the web page in the current state.</source>
+        <target>Den POI auf der Webseite im aktuellen Zustand freigeben.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.start.0">
+        <source>Show from</source>
+        <target>Anzeigen ab</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.start.1">
+        <source>If you want to prevent the poi item from showing on the website before a certain date/time, you can enter it here. Otherwise leave the field blank.</source>
+        <target>Wenn Sie den POI erst ab einem bestimmten Zeitpunkt auf der Webseite anzeigen möchten, können Sie diesen hier eingeben. Andernfalls lassen Sie das Feld leer. </target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.stop.0">
+        <source>Show until</source>
+        <target>Anzeigen bis</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.stop.1">
+        <source>If you want to prevent the poi item from showing on the website after a certain date/time, you can enter it here. Otherwise leave the field blank.</source>
+        <target>Wenn Sie den POI nur bis zu einem bestimmten Zeitpunkt auf der Webseite anzeigen möchten, können Sie diesen hier eingeben. Andernfalls lassen Sie das Feld leer. </target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.tstamp.0">
+        <source>Revision date</source>
+        <target>Änderungsdatum</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.tstamp.1">
+        <source>Date and time of the latest revision</source>
+        <target>Datum und Uhrzeit der letzten Änderung</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.publishedData.0">
+        <source>Published data</source>
+        <target>Veröffentlichte Daten</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.title_legend">
+        <source>Title and type</source>
+        <target>Titel und Typ</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.meta_legend">
+        <source>Metadata</source>
+        <target>Metadaten</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.description_legend">
+        <source>Description</source>
+        <target>Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.image_legend">
+        <source>Image settings</source>
+        <target>Bildeinstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.contact_legend">
+        <source>Contact data</source>
+        <target>Kontaktdaten</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.geodata_legend">
+        <source>Geo data</source>
+        <target>Geodaten</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.social_media_legend">
+        <source>Social media</source>
+        <target>Soziale Medien</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.connection_legend">
+        <source>Categories &amp; tags</source>
+        <target>Kategorien &amp; Tags</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.expert_legend">
+        <source>Expert settings</source>
+        <target>Experteneinstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.publish_legend">
+        <source>Publish settings</source>
+        <target>Veröffentlichung</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.config.0">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.config.1">
+        <source>Adjust the Bergheim configuration</source>
+        <target>Die Bergheim-Konfiguration anpassen</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.list.empty">
+        <source>No records could be found.</source>
+        <target>Es konnten keine Datensätze gefunden werden.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

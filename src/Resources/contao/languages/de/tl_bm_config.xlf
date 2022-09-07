@@ -1,0 +1,26 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_bm_config.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_bm_config.default_image_legend">
+        <source>Default images</source>
+        <target>Standard-Bilder</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_config.defaultImagePoi.0">
+        <source>POI default image</source>
+        <target>POI Standard-Bild</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_config.defaultImagePoi.1">
+        <source>This image is displayed if the poi record does not have a title image.</source>
+        <target>Diese Bild wird angezeigt, sollte der POI-Datensatz über kein Titelbild verfügen.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_config.defaultImageShowcase.0">
+        <source>Showcase default image</source>
+        <target>Schaufenster Standard-Bild</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_config.defaultImageShowcase.1">
+        <source>This image is displayed if the showcase record does not have a title image.</source>
+        <target>Diese Bild wird angezeigt, sollte der Schaufenster-Datensatz über kein Titelbild verfügen.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

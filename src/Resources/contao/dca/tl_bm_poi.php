@@ -1,10 +1,11 @@
 <?php
-use Contao\System;
+
+use Contao\Backend;
 use Contao\DC_Table;
 use Contao\DataContainer;
 use Contao\CoreBundle\EventListener\Widget\HttpUrlListener;
-
-System::loadLanguageFile('tl_bm_poi');
+use Oveleon\ContaoBergheimBundle\POI;
+use Oveleon\ContaoBergheimBundle\Tag;
 
 $GLOBALS['TL_DCA']['tl_bm_poi'] = array
 (
@@ -12,13 +13,25 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
     'config' => array
     (
         'dataContainer'               => DC_Table::class,
+        'switchToEdit'                => true,
         'enableVersioning'            => true,
+        'markAsCopy'                  => 'title',
+        'ondelete_callback' => array
+        (
+            array(POI::class, 'deleteRelations')
+        ),
+        'onsubmit_callback' => array
+        (
+            array(POI::class, 'createAndCleanUpRelations'),
+            array(POI::class, 'publishRecord')
+        ),
         'sql' => array
         (
             'keys' => array
             (
                 'id' => 'primary',
-                'type' => 'index'
+                'alias' => 'index',
+                'type,published,start,stop' => 'index'
             )
         )
     ),
@@ -28,16 +41,23 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
     (
         'sorting' => array
         (
-            'mode'                    => DataContainer::MODE_UNSORTED,
-            'flag'                    => 1
+            'mode'                    => DataContainer::MODE_SORTABLE,
+            'fields'                  => array('tstamp'),
+            'panelLayout'             => 'filter;sort,search,limit',
         ),
         'label' => array
         (
-            'fields'                  => array('id', 'title', 'type'),
+            'fields'                  => array('title', 'alias', 'type', 'tstamp'),
             'showColumns'             => true
         ),
         'global_operations' => array
         (
+            'config' => array
+            (
+                'href'                => 'do=config',
+                'class'               => 'header_edit_all',
+                'attributes'          => 'onclick="Backend.getScrollOffset()"'
+            ),
             'all' => array
             (
                 'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
@@ -51,19 +71,12 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'edit' => array
             (
                 'href'                => 'act=edit',
-                'icon'                => 'edit.svg',
+                'icon'                => 'edit.svg'
             ),
             'copy' => array
             (
-                'href'                => 'act=paste&amp;mode=copy',
-                'icon'                => 'copy.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset()"',
-            ),
-            'cut' => array
-            (
-                'href'                => 'act=paste&amp;mode=cut',
-                'icon'                => 'cut.svg',
-                'attributes'          => 'onclick="Backend.getScrollOffset()"'
+                'href'                => 'act=copy',
+                'icon'                => 'copy.svg'
             ),
             'delete' => array
             (
@@ -73,7 +86,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             ),
             'toggle' => array
             (
-                'href'                => 'act=toggle&amp;field=invisible',
+                'href'                => 'act=toggle&amp;field=published',
                 'icon'                => 'visible.svg',
             ),
             'show' => array
@@ -89,8 +102,8 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
     (
         '__selector__'                => ['type'],
         'default'                     => '{config_legend},type;',
-        'poi'                         => '{config_legend},title,alias,type;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},logoSRC,mainImageSRC,imagesSRC;{address_legend},company,website,zipCode,city,street,houseNumber,phone,mobilePhone,lat,lng,email,openingHours;',
-        'showcase'                    => '{config_legend},title,alias,type;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},logoSRC,mainImageSRC,imagesSRC;{address_legend},company,website,zipCode,city,street,houseNumber,phone,mobilePhone,lat,lng,email,openingHours;{social_media_legend},facebookUrl,instagramUrl,tiktokUrl,youtubeUrl,pinterestUrl,xingUrl,linkedinUrl;{connection_legend},branch,categories;',
+        'poi'                         => '{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},mainImageSRC,imagesSRC;{contact_legend},postal,city,street,houseNumber;{geodata_legend:hide},lat,lng;{connection_legend:hide},branch,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
+        'showcase'                    => '{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},logoSRC,mainImageSRC,imagesSRC;{contact_legend},company,postal,city,street,houseNumber,phone,mobile,email,website,openingHours;{geodata_legend:hide},lat,lng;{social_media_legend:hide},facebookUrl,instagramUrl,tiktokUrl,youtubeUrl,pinterestUrl,xingUrl,linkedinUrl;{connection_legend:hide},branch,categories,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
     ),
 
     // Fields
@@ -102,21 +115,25 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         ),
         'tstamp' => array
         (
+            'sorting'                 => true,
+            'flag'                    => DataContainer::SORT_DAY_DESC,
+            'eval'                    => array('rgxp'=>'datim'),
             'sql'                     => "int(10) unsigned NOT NULL default 0"
         ),
         'type' => array
         (
             'exclude'                 => true,
             'filter'                  => true,
+            'sorting'                 => true,
             'inputType'               => 'select',
             'options'                 => ['poi', 'showcase'],
             'reference'               => &$GLOBALS['TL_LANG']['tl_bm_poi'],
-            'eval'                    => ['chosen' => true, 'submitOnChange'=> true, 'tl_class' => 'w50'],
+            'eval'                    => ['chosen' => true, 'submitOnChange'=> true, 'tl_class'=>'w50'],
             'sql'                     => [
                 'name'      => 'type',
                 'type'      => 'string',
                 'length'    => 16,
-                'default'   => 'text',
+                'default'   => 'showcase',
                 'customSchemaOptions'=> [
                     'collation' => 'ascii_bin'
                 ]
@@ -126,6 +143,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
+            'sorting'                 => true,
             'search'                  => true,
             'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
@@ -136,26 +154,71 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'inputType'               => 'text',
             'search'                  => true,
             'eval'                    => ['rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>255, 'tl_class'=>'w50 clr'],
-            /*'save_callback' => array
+            'save_callback' => array
             (
-                array('poi', 'generateAlias')
-            ),*/
+                array(POI::class, 'generateAlias')
+            ),
             'sql'                     => "varchar(255) BINARY NOT NULL default ''"
         ),
+        'author' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'filter'                  => true,
+            'sorting'                 => true,
+            'flag'                    => DataContainer::SORT_ASC,
+            'inputType'               => 'select',
+            'foreignKey'              => 'tl_member.username',
+            'eval'                    => array('doNotCopy'=>true, 'chosen'=>true, /*'mandatory'=>true, */'includeBlankOption'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "int(10) unsigned NOT NULL default 0",
+            'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
+        ),
+        'pageTitle' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => array('maxlength'=>255, 'decodeEntities'=>true, 'tl_class'=>'w50'),
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'robots' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'select',
+            'options'                 => array('index,follow', 'index,nofollow', 'noindex,follow', 'noindex,nofollow'),
+            'eval'                    => array('tl_class'=>'w50', 'includeBlankOption' => true),
+            'sql'                     => "varchar(32) NOT NULL default ''"
+        ),
+        'metaDescription' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'textarea',
+            'eval'                    => array('style'=>'height:60px', 'decodeEntities'=>true, 'tl_class'=>'clr'),
+            'sql'                     => "text NULL"
+        ),
+        /*'serpPreview' => array
+        (
+            'label'                   => &$GLOBALS['TL_LANG']['MSC']['serpPreview'],
+            'exclude'                 => true,
+            'inputType'               => 'serpPreview',
+            'eval'                    => array('url_callback'=>array('tl_bm_poi', 'getSerpUrl'), 'title_tag_callback'=>array('tl_bm_poi', 'getTitleTag'), 'titleFields'=>array('pageTitle', 'title'), 'descriptionFields'=>array('metaDescription', 'teaser')),
+            'sql'                     => null
+        ),*/
         'subtitle' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
             'search'                  => true,
-            'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'description' => array
         (
             'exclude'                 => true,
             'inputType'               => 'textarea',
-            'search'                  => true,
-            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr'],
+            'eval'                    => ['mandatory'=>true, 'rte'=>'tinyMCE', 'tl_class'=>'clr'],
             'sql'                     => "text NULL"
         ),
         'teaser' => array
@@ -170,7 +233,6 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         (
             'exclude'                 => true,
             'inputType'               => 'textarea',
-            'search'                  => true,
             'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr'],
             'sql'                     => "text NULL"
         ),
@@ -178,14 +240,14 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         (
             'exclude'                 => true,
             'inputType'               => 'fileTree',
-            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'],
+            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr'],
             'sql'                     => "binary(16) NULL"
         ),
         'mainImageSRC' => array
         (
             'exclude'                 => true,
             'inputType'               => 'fileTree',
-            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'],
+            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr'],
             'sql'                     => "binary(16) NULL"
         ),
         'imagesSRC' => array
@@ -197,9 +259,10 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         ),
         'orderSRC' => array
         (
+            'label'                   => &$GLOBALS['TL_LANG']['MSC']['sortOrder'],
             'sql'                     => "blob NULL"
         ),
-        'zipCode' => array
+        'postal' => array
         (
             'exclude'                 => true,
             'search'                  => true,
@@ -226,7 +289,6 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         'houseNumber' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
             'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
@@ -234,7 +296,6 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         'lat' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
             'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
@@ -242,7 +303,6 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         'lng' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
             'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
@@ -252,7 +312,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'phone' => array
@@ -263,7 +323,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
-        'mobilePhone' => array
+        'mobile' => array
         (
             'exclude'                 => true,
             'search'                  => true,
@@ -276,7 +336,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'maxlength'=>255, 'rgxp'=>'email', 'unique'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'rgxp'=>'email', 'unique'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'website' => array
@@ -291,75 +351,66 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         (
             'exclude'                 => true,
             'inputType'               => 'textarea',
-            'search'                  => true,
             'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr'],
             'sql'                     => "text NULL"
         ),
         'facebookUrl' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
             'sql'                     => "text NULL"
         ),
         'instagramUrl' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
             'sql'                     => "text NULL"
         ),
         'tiktokUrl' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
             'sql'                     => "text NULL"
         ),
         'youtubeUrl' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
             'sql'                     => "text NULL"
         ),
         'pinterestUrl' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
             'sql'                     => "text NULL"
         ),
         'xingUrl' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
             'sql'                     => "text NULL"
         ),
         'linkedinUrl' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['mandatory'=>true, 'rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
             'sql'                     => "text NULL"
         ),
         'branch' => array
         (
             'exclude'                 => true,
-            'search'                  => true,
             'inputType'               => 'select',
-            'eval'                    => ['chosen'=>true, 'tl_class'=>'w50'],
-			'foreignKey'              => 'tl_bm_branch.title',
-			'sql'                     => "int(10) unsigned NOT NULL default 0",
-			'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
+            'eval'                    => ['mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50'],
+            'foreignKey'              => 'tl_bm_branch.title',
+            'sql'                     => "int(10) unsigned NOT NULL default 0",
+            'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
         ),
         'categories' => array
         (
@@ -367,9 +418,87 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'foreignKey'              => 'tl_bm_category.title',
-            'eval'                    => array('mandatory'=>true, 'multiple'=>true, 'tl_class' => 'clr'),
+            'eval'                    => array('multiple'=>true, 'tl_class' => 'clr'),
             'sql'                     => "blob NULL",
             'relation'                => array('type'=>'hasMany', 'load'=>'lazy')
         ),
+        'tags' => array
+        (
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'foreignKey'              => 'tl_bm_tag.title',
+            'eval'                    => array('multiple'=>true, 'tl_class' => 'clr'),
+            'sql'                     => "blob NULL",
+            'relation'                => array('type'=>'hasMany', 'load'=>'lazy')
+        ),
+        'cssClass' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'text',
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'published' => array
+        (
+            'exclude'                 => true,
+            'toggle'                  => true,
+            'filter'                  => true,
+            'flag'                    => DataContainer::SORT_INITIAL_LETTER_ASC,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
+        'publishData' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "char(1) NOT NULL default ''"
+        ),
+        'start' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'text',
+            'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
+            'sql'                     => "varchar(10) NOT NULL default ''"
+        ),
+        'stop' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'text',
+            'eval'                    => array('rgxp'=>'datim', 'datepicker'=>true, 'tl_class'=>'w50 wizard'),
+            'sql'                     => "varchar(10) NOT NULL default ''"
+        ),
+        'publishedData' => array
+        (
+            'sql'                     => "blob NULL"
+        )
     )
 );
+
+/**
+ * Provide miscellaneous methods that are used by the data configuration array.
+ */
+class tl_bm_poi extends Backend
+{
+    /**
+     * Return the SERP URL
+     *
+     * @return string
+     */
+    public function getSerpUrl()
+    {
+        return '';
+    }
+
+    /**
+     * Return the title tag from the associated page layout
+     *
+     * @return string
+     */
+    public function getTitleTag()
+    {
+        return '';
+    }
+}
