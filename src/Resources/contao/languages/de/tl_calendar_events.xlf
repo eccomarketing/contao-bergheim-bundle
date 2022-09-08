@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_calendar_events.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_calendar_events.poi.0">
+        <source>POI / Venue</source>
+        <target>POI / Veranstaltungsort</target>
+      </trans-unit>
+      <trans-unit id="tl_calendar_events.poi.1">
+        <source>Here a venue can be assigned based on a POI record.</source>
+        <target>Hier kann ein Veranstaltungsort anhand eines POI-Datensatzes zugewisen werden.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

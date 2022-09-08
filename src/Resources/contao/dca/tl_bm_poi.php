@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         ),
         'label' => array
         (
-            'fields'                  => array('title', 'alias', 'type', 'tstamp'),
+            'fields'                  => array('title', 'alias', 'type', 'tstamp', 'dirty'),
             'showColumns'             => true
         ),
         'global_operations' => array
@@ -473,6 +473,11 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         'publishedData' => array
         (
             'sql'                     => "blob NULL"
+        ),
+        'dirty' => array
+        (
+            'filter'                  => true,
+            'sql'                     => "char(1) NOT NULL default ''"
         )
     )
 );

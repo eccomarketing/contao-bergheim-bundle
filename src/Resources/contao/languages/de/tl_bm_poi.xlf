@@ -351,6 +351,10 @@
         <source>Published data</source>
         <target>Veröffentlichte Daten</target>
       </trans-unit>
+      <trans-unit id="tl_bm_poi.dirty.0">
+        <source>Release pending</source>
+        <target>Freigabe ausstehend</target>
+      </trans-unit>
       <trans-unit id="tl_bm_poi.title_legend">
         <source>Title and type</source>
         <target>Titel und Typ</target>

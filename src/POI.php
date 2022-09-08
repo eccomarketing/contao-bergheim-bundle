@@ -139,8 +139,13 @@ class POI extends System
         {
             $arrData = $dc->activeRecord->row();
 
-            $this->Database->prepare("UPDATE tl_bm_poi SET publishedData=?, publishData='' WHERE id=?")
+            $this->Database->prepare("UPDATE tl_bm_poi SET publishedData=?, publishData='', dirty='' WHERE id=?")
                 ->execute(serialize($arrData), $dc->activeRecord->id);
+        }
+        else
+        {
+            $this->Database->prepare("UPDATE tl_bm_poi SET dirty='1' WHERE id=?")
+                ->execute($dc->activeRecord->id);
         }
     }
 }

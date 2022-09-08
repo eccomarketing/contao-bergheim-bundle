@@ -8,6 +8,7 @@ use Contao\Config;
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\Exception\InternalServerErrorException;
 use Contao\CoreBundle\Exception\PageNotFoundException;
+use Contao\CoreBundle\Routing\ResponseContext\HtmlHeadBag\HtmlHeadBag;
 use Contao\CoreBundle\ServiceAnnotation\FrontendModule;
 use Contao\Environment;
 use Contao\File;
@@ -95,6 +96,39 @@ class PoiReaderController extends AbstractFrontendModuleController
 
         $arrPoiData = StringUtil::deserialize($objPoi->publishedData, true);
         $objPoi = (object) $arrPoiData;
+
+        // Overwrite the page metadata
+        $responseContext = System::getContainer()->get('contao.routing.response_context_accessor')->getResponseContext();
+
+        if ($responseContext && $responseContext->has(HtmlHeadBag::class))
+        {
+            /** @var HtmlHeadBag $htmlHeadBag */
+            $htmlHeadBag = $responseContext->get(HtmlHeadBag::class);
+            $htmlDecoder = System::getContainer()->get('contao.string.html_decoder');
+
+            if ($objPoi->pageTitle)
+            {
+                $htmlHeadBag->setTitle($objPoi->pageTitle); // Already stored decoded
+            }
+            elseif ($objPoi->title)
+            {
+                $htmlHeadBag->setTitle($htmlDecoder->inputEncodedToPlainText($objPoi->title));
+            }
+
+            if ($objPoi->metaDescription)
+            {
+                $htmlHeadBag->setMetaDescription($htmlDecoder->inputEncodedToPlainText($objPoi->metaDescription));
+            }
+            elseif ($objPoi->teaser)
+            {
+                $htmlHeadBag->setMetaDescription($htmlDecoder->htmlToPlainText($objPoi->teaser));
+            }
+
+            if ($objPoi->robots)
+            {
+                $htmlHeadBag->setMetaRobots($objPoi->robots);
+            }
+        }
 
         $this->template->setData($arrPoiData);
 
