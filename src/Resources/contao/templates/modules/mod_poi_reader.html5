@@ -37,10 +37,18 @@
                 <p class="address"><?= $this->address ?></p>
             <?php endif; ?>
             <p class="contact">
-                <span class="label phone">Telefon: </span>
-                <span class="value phone"><?= $this->phone ?></span><br>
-                <span class="label email">E-Mail: </span>
-                <span class="value email"><?= $this->email ?></span>
+                <?php if ($this->phone): ?>
+                    <span class="label phone">Telefon: </span>
+                    <span class="value phone"><?= $this->phone ?></span><br>
+                <?php endif; ?>
+                <?php if ($this->mobile): ?>
+                    <span class="label phone">Mobil: </span>
+                    <span class="value phone"><?= $this->mobile ?></span><br>
+                <?php endif; ?>
+                <?php if ($this->email): ?>
+                    <span class="label email">E-Mail: </span>
+                    <span class="value email"><?= $this->email ?></span>
+                <?php endif; ?>
             </p>
             <p class="social-media">
                 <?php if (!empty($this->facebookUrl)): ?>
