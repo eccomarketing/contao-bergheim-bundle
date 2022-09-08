@@ -73,7 +73,7 @@ $GLOBALS['TL_DCA']['tl_bm_category'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{title_legend},title;',
+        'default'                     => '{title_legend},title;{icon_legend},iconSRC;',
     ),
 
     // Fields
@@ -99,5 +99,12 @@ $GLOBALS['TL_DCA']['tl_bm_category'] = array
             'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
+        'iconSRC' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'fileTree',
+            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'],
+            'sql'                     => "binary(16) NULL"
+        )
     )
 );

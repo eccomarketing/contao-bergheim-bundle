@@ -5,6 +5,10 @@
         <source>Title</source>
         <target>Titel</target>
       </trans-unit>
+      <trans-unit id="tl_bm_tag.icon_legend">
+        <source>Icon</source>
+        <target>Icon</target>
+      </trans-unit>
       <trans-unit id="tl_bm_tag.title.0">
         <source>Title</source>
         <target>Titel</target>
@@ -20,6 +24,14 @@
       <trans-unit id="tl_bm_tag.alias.1">
         <source>The tag alias is a unique reference to the poi item which can be called instead of its numeric ID.</source>
         <target>Der Tag-Alias ist eine eindeutige Referenz, die anstelle der numerischen ID aufgerufen werden kann.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.iconSRC.0">
+        <source>Icon</source>
+        <target>Icon</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.iconSRC.1">
+        <source>Here you need to select the icon for the map indicator.</source>
+        <target>Hier muss das Icon für den Kartenindikator ausgewählt werden.</target>
       </trans-unit>
       <trans-unit id="tl_bm_tag.tstamp.0">
         <source>Revision date</source>

@@ -5,6 +5,10 @@
         <source>Title</source>
         <target>Titel</target>
       </trans-unit>
+      <trans-unit id="tl_bm_category.icon_legend">
+        <source>Icon</source>
+        <target>Icon</target>
+      </trans-unit>
       <trans-unit id="tl_bm_category.title.0">
         <source>Title</source>
         <target>Titel</target>
@@ -12,6 +16,14 @@
       <trans-unit id="tl_bm_category.title.1">
         <source>Please enter the branch title.</source>
         <target>Bitte geben Sie den Branchen-Titel ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_category.iconSRC.0">
+        <source>Icon</source>
+        <target>Icon</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_category.iconSRC.1">
+        <source>Here you need to select the icon for the map indicator.</source>
+        <target>Hier muss das Icon für den Kartenindikator ausgewählt werden.</target>
       </trans-unit>
       <trans-unit id="tl_bm_category.tstamp.0">
         <source>Revision date</source>
