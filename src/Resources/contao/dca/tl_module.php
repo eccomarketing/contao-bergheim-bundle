@@ -11,9 +11,9 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'poi_listMode';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_list']             = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_listbranches']     = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_branches,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_listcategories']   = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_categories,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_reader']           = '{title_legend},name,headline,type;{config_legend},poi_listMode;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize,poi_imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_readerbranches']   = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_branches;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize,poi_imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_readercategories'] = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_categories;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize,poi_imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_reader']           = '{title_legend},name,headline,type;{config_legend},poi_listMode;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize,poi_imgSize,poi_imgSizeLogo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_readerbranches']   = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_branches;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize,poi_imgSize,poi_imgSizeLogo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_readercategories'] = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_categories;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize,poi_imgSize,poi_imgSizeLogo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 
 // Add fields to tl_module
 $GLOBALS['TL_DCA']['tl_module']['fields']['poi_listMode'] = array
@@ -77,6 +77,19 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['poi_order'] = array
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['poi_imgSize'] = array
+(
+    'exclude'                 => true,
+    'inputType'               => 'imageSize',
+    'reference'               => &$GLOBALS['TL_LANG']['MSC'],
+    'eval'                    => array('rgxp'=>'natural', 'includeBlankOption'=>true, 'nospace'=>true, 'helpwizard'=>true, 'tl_class'=>'w50'),
+    'options_callback' => static function ()
+    {
+        return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
+    },
+    'sql'                     => "varchar(128) COLLATE ascii_bin NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['poi_imgSizeLogo'] = array
 (
     'exclude'                 => true,
     'inputType'               => 'imageSize',

@@ -65,6 +65,14 @@
         <source>Here you can set the image gallery dimensions and the resize mode.</source>
         <target>Hier können Sie die Abmessungen der Bildergalerie und den Skalierungsmodus festlegen.</target>
       </trans-unit>
+      <trans-unit id="tl_module.poi_imgSizeLogo.0">
+        <source>Image size (logo)</source>
+        <target>Bildgröße (Logo)</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_imgSizeLogo.1">
+        <source>Here you can set the logo dimensions and the resize mode.</source>
+        <target>Hier können Sie die Abmessungen des Logos und den Skalierungsmodus festlegen.</target>
+      </trans-unit>
       <trans-unit id="tl_module.all">
         <source>All</source>
         <target>Alle</target>

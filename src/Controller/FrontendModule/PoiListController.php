@@ -361,17 +361,21 @@ class PoiListController extends AbstractFrontendModuleController
         foreach ($objPois as $objPoi)
         {
             $poiTags = StringUtil::deserialize($objPoi->tags, true);
+            $activeTags = Input::get('tag') ?? [];
 
             foreach ($poiTags as $tagID)
             {
                 if (!in_array($tagID, $arrTags))
                 {
-                    $arrTags[$tags[$tagID]] = strtok($this->request->getUri(), '?') . '?tag[0]=' . $tagID;
+                    $arrTags[$tags[$tagID]]['class'] = in_array($tagID, $activeTags) ? 'active' : '';
+                    $arrTags[$tags[$tagID]]['url'] = strtok($this->request->getUri(), '?') . '?tag[0]=' . $tagID;
                 }
             }
         }
 
-        $arrTags['Reset'] = strtok($this->request->getUri(), '?');
+        // ToDo. Remove reset button with toggle feature of tags
+        $arrTags['Reset']['url'] = strtok($this->request->getUri(), '?');
+        $arrTags['Reset']['class'] = '';
 
         return $arrTags;
     }

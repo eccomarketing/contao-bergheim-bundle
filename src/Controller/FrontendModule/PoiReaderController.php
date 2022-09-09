@@ -130,7 +130,15 @@ class PoiReaderController extends AbstractFrontendModuleController
             }
         }
 
-        $this->template->setData($arrPoiData);
+        foreach ($arrPoiData as $name => $value)
+        {
+            $this->template->{$name} = $value;
+        }
+
+        if (!empty($objPoi->cssClass))
+        {
+            $this->template->class .= ' ' . $objPoi->cssClass;
+        }
 
         $this->template->hasSubTitle = $objPoi->subtitle ? true : false;
 
@@ -242,6 +250,38 @@ class PoiReaderController extends AbstractFrontendModuleController
             }
 
             $this->template->body = $body;
+        }
+
+        if ($objPoi->logoSRC !== null)
+        {
+            $objLogo = FilesModel::findByUuid($objPoi->logoSRC);
+
+            if ($objLogo !== null)
+            {
+                $this->template->addLogo = true;
+
+                if ($this->model->poi_imgSizeLogo)
+                {
+                    $size = StringUtil::deserialize($this->model->poi_imgSizeLogo);
+
+                    if ($size[0] > 0 || $size[1] > 0 || is_numeric($size[2]) || ($size[2][0] ?? null) === '_')
+                    {
+                        $imgSize = $this->model->poi_imgSizeLogo;
+                    }
+                }
+
+                $figureBuilder = System::getContainer()
+                    ->get('contao.image.studio')
+                    ->createFigureBuilder()
+                    ->setSize($imgSize)
+                    ->setLightboxGroupIdentifier('lb' . $this->model->id);
+
+                $figure = $figureBuilder
+                    ->fromFilesModel($objLogo)
+                    ->build();
+
+                $this->template->logo = $figure->getLegacyTemplateData();;
+            }
         }
 
         // Tag the poi

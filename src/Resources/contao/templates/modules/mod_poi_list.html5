@@ -4,8 +4,8 @@
 
     <?php if ($this->addTags): ?>
         <ul>
-            <?php foreach ($this->tags as $title => $link): ?>
-                <li><a href="<?= $link ?>"><?= $title ?></a></li>
+            <?php foreach ($this->tags as $title => $tag): ?>
+                <li<?= !empty($tag['class']) ? ' class="' . $tag['class'] . '"' : '' ?>><a href="<?= $tag['url'] ?>"<?= !empty($tag['class']) ? ' class="' . $tag['class'] . '"' : '' ?>><?= $title ?></a></li>
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>
