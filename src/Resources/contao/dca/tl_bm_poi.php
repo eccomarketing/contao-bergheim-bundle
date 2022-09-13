@@ -102,7 +102,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
     (
         '__selector__'                => ['type'],
         'default'                     => '{config_legend},type;',
-        'poi'                         => '{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},mainImageSRC,imagesSRC;{contact_legend},postal,city,street,houseNumber;{geodata_legend:hide},lat,lng;{connection_legend:hide},branch,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
+        'poi'                         => '{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},mainImageSRC,imagesSRC;{contact_legend},postal,city,street,houseNumber;{geodata_legend:hide},lat,lng;{connection_legend:hide},branch,categories,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
         'showcase'                    => '{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},logoSRC,mainImageSRC,imagesSRC;{contact_legend},company,postal,city,street,houseNumber,phone,mobile,email,website,openingHours;{geodata_legend:hide},lat,lng;{social_media_legend:hide},facebookUrl,instagramUrl,tiktokUrl,youtubeUrl,pinterestUrl,xingUrl,linkedinUrl;{connection_legend:hide},branch,categories,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
     ),
 
@@ -276,7 +276,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'search'                  => true,
             'inputType'               => 'text',
             'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
-            'sql'                     => "varchar(255) NOT NULL default ''"
+            'sql'                     => "varchar(255) NOT NULL default 'Bergheim'"
         ),
         'street' => array
         (
