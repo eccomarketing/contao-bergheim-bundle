@@ -472,7 +472,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         ),
         'publishedData' => array
         (
-            'sql'                     => "blob NULL"
+            'sql'                     => "mediumblob NULL"
         ),
         'dirty' => array
         (

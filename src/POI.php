@@ -2,10 +2,14 @@
 
 namespace Oveleon\ContaoBergheimBundle;
 
+use Contao\Config;
 use Contao\Database;
 use Contao\DataContainer;
+use Contao\Environment;
+use Contao\PageModel;
 use Contao\StringUtil;
 use Contao\System;
+use Oveleon\ContaoBergheimBundle\Model\BranchModel;
 use Oveleon\ContaoBergheimBundle\Model\CategoryModel;
 
 class POI extends System
@@ -135,7 +139,7 @@ class POI extends System
      */
     public function publishRecord(DataContainer $dc): void
     {
-        if ($dc->activeRecord->publishData)
+        if ($dc->activeRecord->publishData || empty($dc->activeRecord->publishedData))
         {
             $arrData = $dc->activeRecord->row();
 
@@ -147,5 +151,24 @@ class POI extends System
             $this->Database->prepare("UPDATE tl_bm_poi SET dirty='1' WHERE id=?")
                 ->execute($dc->activeRecord->id);
         }
+    }
+
+    public static function getUrl($objPoi): string
+    {
+        $objBranch = BranchModel::findByPk($objPoi->branch);
+        $objPage = $objBranch->getRelated('jumpTo');
+
+        if (!$objPage instanceof PageModel)
+        {
+            $strPoiUrl = StringUtil::ampersand(Environment::get('request'));
+        }
+        else
+        {
+            $params = (Config::get('useAutoItem') ? '/' : '/items/') . ($objPoi->alias ?: $objPoi->id);
+
+            $strPoiUrl = StringUtil::ampersand($objPage->getFrontendUrl($params));
+        }
+
+        return $strPoiUrl;
     }
 }
