@@ -46,6 +46,7 @@ use Contao\Model;
  * @property string|null       $linkedinUrl
  * @property integer           $branch
  * @property string|array|null $categories
+ * @property string|array|null $tags
  * @property string            $cssClass
  * @property string|boolean    $published
  * @property string            $start
@@ -512,7 +513,27 @@ class PoiModel extends Model
         $t = static::$strTable;
         $objDatabase = Database::getInstance();
 
-        $objResult = $objDatabase->prepare("SELECT * FROM $t p LEFT JOIN tl_bm_poi_category pc ON p.id=pc.pid WHERE pc.cid IN (" . implode(',', $arrCategories) . ") AND p.published='1' GROUP BY p.id")->execute();
+        $query = "SELECT * FROM $t p LEFT JOIN tl_bm_poi_category pc ON p.id=pc.pid WHERE pc.cid IN (" . implode(',', $arrCategories) . ")";
+
+        if (!static::isPreviewMode($arrOptions))
+        {
+            $time = Date::floorToMinute();
+            $query .= " AND p.published='1' AND (p.start='' OR p.start<='$time') AND (p.stop='' OR p.stop>'$time')";
+        }
+
+        $query .= " GROUP BY p.id";
+
+        if ($intLimit !== 0)
+        {
+            $query .= " LIMIT " . $intLimit;
+        }
+
+        if ($intOffset !== 0)
+        {
+            $query .= " OFFSET " . $intOffset;
+        }
+
+        $objResult = $objDatabase->prepare($query)->execute();
 
         if ($objResult->numRows < 1)
         {
@@ -532,6 +553,121 @@ class PoiModel extends Model
      */
     public static function countPublishedByCategories(array $arrCategories=array(), array $arrOptions=array())
     {
-        return 0;
+        if (empty($arrCategories))
+        {
+            return null;
+        }
+
+        $t = static::$strTable;
+        $objDatabase = Database::getInstance();
+
+        $query = "SELECT COUNT(*) FROM $t p LEFT JOIN tl_bm_poi_category pc ON p.id=pc.pid WHERE pc.cid IN (" . implode(',', $arrCategories) . ")";
+
+        if (!static::isPreviewMode($arrOptions))
+        {
+            $time = Date::floorToMinute();
+            $query .= " AND p.published='1' AND (p.start='' OR p.start<='$time') AND (p.stop='' OR p.stop>'$time')";
+        }
+
+        $query .= " GROUP BY p.id";
+
+        $objResult = $objDatabase->prepare($query)->execute();
+
+        if ($objResult->numRows < 1)
+        {
+            return null;
+        }
+
+        return $objResult->numRows;
+    }
+
+    /**
+     * Find published poi items by categories and tags
+     *
+     * @param array   $arrCategories  An optional limit
+     * @param array   $arrTags
+     * @param integer $intLimit       An optional limit
+     * @param integer $intOffset      An optional offset
+     * @param array   $arrOptions     An optional options array
+     *
+     * @return Model\Collection|PoiModel[]|PoiModel|null A collection of models or null if there are no poi records
+     */
+    public static function findPublishedByCategoriesAndTags(array $arrCategories=array(), array $arrTags=array(), $intLimit=0, $intOffset=0, array $arrOptions=array())
+    {
+        if (empty($arrCategories))
+        {
+            return null;
+        }
+
+        $t = static::$strTable;
+        $objDatabase = Database::getInstance();
+
+        $query = "SELECT * FROM $t p LEFT JOIN tl_bm_poi_category pc ON p.id=pc.pid LEFT JOIN tl_bm_poi_tag pt ON p.id=pt.pid WHERE pc.cid IN (" . implode(',', $arrCategories) . ") AND pt.tid IN (" . implode(',', $arrTags) . ")";
+
+        if (!static::isPreviewMode($arrOptions))
+        {
+            $time = Date::floorToMinute();
+            $query .= " AND p.published='1' AND (p.start='' OR p.start<='$time') AND (p.stop='' OR p.stop>'$time')";
+        }
+
+        $query .= " GROUP BY p.id";
+
+        if ($intLimit !== 0)
+        {
+            $query .= " LIMIT " . $intLimit;
+        }
+
+        if ($intOffset !== 0)
+        {
+            $query .= " OFFSET " . $intOffset;
+        }
+
+        $objResult = $objDatabase->prepare($query)->execute();
+
+        if ($objResult->numRows < 1)
+        {
+            return null;
+        }
+
+        return Model\Collection::createFromDbResult($objResult, $t);
+    }
+
+    /**
+     * Count published poi items by categories and tags
+     *
+     * @param array   $arrCategories  An optional limit
+     * @param array   $arrTags
+     * @param array   $arrOptions     An optional options array
+     *
+     * @return integer The number of poi items
+     */
+    public static function countPublishedByCategoriesAndTags(array $arrCategories=array(), array $arrTags=array(), array $arrOptions=array())
+    {
+        if (empty($arrCategories))
+        {
+            return null;
+        }
+
+        $t = static::$strTable;
+        $objDatabase = Database::getInstance();
+
+        $query = "SELECT COUNT(*) FROM $t p LEFT JOIN tl_bm_poi_category pc ON p.id=pc.pid LEFT JOIN tl_bm_poi_tag pt ON p.id=pt.pid WHERE pc.cid IN (" . implode(',', $arrCategories) . ") AND pt.tid IN (" . implode(',', $arrTags) . ")";
+
+        if (!static::isPreviewMode($arrOptions))
+        {
+            $time = Date::floorToMinute();
+            $query .= " AND p.published='1' AND (p.start='' OR p.start<='$time') AND (p.stop='' OR p.stop>'$time')";
+        }
+
+        $query .= " GROUP BY p.id";
+
+        $objResult = $objDatabase->prepare($query)->execute();
+
+        if ($objResult->numRows < 1)
+        {
+            return null;
+        }
+
+        return $objResult->numRows;
     }
 }

@@ -73,6 +73,46 @@
         <source>Here you can set the logo dimensions and the resize mode.</source>
         <target>Hier können Sie die Abmessungen des Logos und den Skalierungsmodus festlegen.</target>
       </trans-unit>
+      <trans-unit id="tl_module.map_zoom.0">
+        <source>Initiale zoom level</source>
+        <target>Initiale Zoomstufe</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_zoom.1">
+        <source>Here you can set the zoom level of the map.</source>
+        <target>Hier können Sie die initiale Zoomstufe der Karte festlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_min.0">
+        <source>Minimal zoom level</source>
+        <target>Minimale Zoomstufe</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_min.1">
+        <source>Here you can set the minimal zoom level of the map.</source>
+        <target>Hier können Sie die minimale Zoomstufe der Karte festlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_max.0">
+        <source>Maximal zoom level</source>
+        <target>Maximale Zoomstufe</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_max.1">
+        <source>Here you can set the maximal zoom level of the map.</source>
+        <target>Hier können Sie die maximale Zoomstufe der Karte festlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_latitude.0">
+        <source>Latitude</source>
+        <target>Initialer Breitengrad</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_latitude.1">
+        <source>Here you can set the initial latitude of the map.</source>
+        <target>Hier können Sie den initialen Breitengrad der Karte festlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_longitude.0">
+        <source>Longitude</source>
+        <target>Initialer Längengrad</target>
+      </trans-unit>
+      <trans-unit id="tl_module.map_longitude.1">
+        <source>Here you can set the initial longitude of the map.</source>
+        <target>Hier können Sie den initialen Längengrad der Karte festlegen.</target>
+      </trans-unit>
       <trans-unit id="tl_module.all">
         <source>All</source>
         <target>Alle</target>
@@ -82,8 +122,8 @@
         <target>Branchen</target>
       </trans-unit>
       <trans-unit id="tl_module.categories">
-        <source>Categories (rudimentary)</source>
-        <target>Kategorien (Rudimentär)</target>
+        <source>Categories</source>
+        <target>Kategorien</target>
       </trans-unit>
     </body>
   </file>
