@@ -54,6 +54,14 @@
         <source>Adds a list of poi items to the page</source>
         <target>Fügt der Seite eine POI-Liste hinzu</target>
       </trans-unit>
+      <trans-unit id="FMD.poi_map.0">
+        <source>POI-Map</source>
+        <target>POI-Map</target>
+      </trans-unit>
+      <trans-unit id="FMD.poi_map.1">
+        <source>Adds a map of poi items to the page</source>
+        <target>Fügt der Seite eine POI-Karte hinzu</target>
+      </trans-unit>
       <trans-unit id="FMD.poi_reader.0">
         <source>POI detail page</source>
         <target>POI-Detailseite</target>

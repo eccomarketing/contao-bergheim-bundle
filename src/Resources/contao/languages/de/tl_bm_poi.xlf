@@ -407,6 +407,23 @@
         <source>No records could be found.</source>
         <target>Es konnten keine Datensätze gefunden werden.</target>
       </trans-unit>
+
+      <trans-unit id="tl_bm_poi.typeFilterLabel">
+        <source>Filtern</source>
+        <target>Filtern</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.categoryFilterLabel">
+        <source>Categories</source>
+        <target>Kategorien</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.branchFilterLabel">
+        <source>Branch</source>
+        <target>Branchen</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.tagFilterLabel">
+        <source>Tags</source>
+        <target>Tags</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

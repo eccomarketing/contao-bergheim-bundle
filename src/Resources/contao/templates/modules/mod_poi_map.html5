@@ -1,0 +1,66 @@
+<?php $GLOBALS['TL_JAVASCRIPT'][] = '/bundles/contaobergheim/build/bergheim.js'; ?>
+
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+    <div class="poi-map-container">
+        <div class="quick-filter">
+            <?php foreach ($this->quickFilter as $tagId => $label): ?>
+                <div class="widget">
+                    <input type="checkbox" value="<?=$tagId?>" data-filter="tag" id="tag-<?=$tagId?>" />
+                    <label for="tag-<?=$tagId?>"><?=$label?></label>
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <div id="poi-map"></div>
+        <div class="filter">
+            <div class="type-filter">
+                <h3><?=$this->typeFilterLabel?></h3>
+                <?php foreach ($this->typeFilter as $type => $label): ?>
+                    <div class="widget">
+                        <input type="checkbox" value="<?=$type?>" data-filter="type" id="type-<?=$type?>" checked />
+                        <label for="type-<?=$type?>"><?=$label?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="branch-filter">
+                <h4><?=$this->branchFilterLabel?></h4>
+                <?php foreach ($this->branchFilter as $branchId => $label): ?>
+                    <div class="widget">
+                        <input type="checkbox" value="<?=$branchId?>" data-filter="branch" id="branch-<?=$branchId?>" />
+                        <label for="branch-<?=$branchId?>"><?=$label?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="category-filter">
+                <h4><?=$this->categoryFilterLabel?></h4>
+                <?php foreach ($this->categoryFilter as $categoryId => $label): ?>
+                    <div class="widget">
+                        <input type="checkbox" value="<?=$categoryId?>" data-filter="category" id="category-<?=$categoryId?>" />
+                        <label for="category-<?=$categoryId?>"><?=$label?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="tag-filter">
+                <h4><?=$this->tagFilterLabel?></h4>
+                <?php foreach ($this->tagFilter as $tagId => $label): ?>
+                    <div class="widget">
+                        <input type="checkbox" value="<?=$tagId?>" data-filter="tag" id="tag-<?=$tagId?>" />
+                        <label for="tag-<?=$tagId?>"><?=$label?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const poiMap = new PoiMap({
+            mapId: 'poi-map',
+            mapOptions: <?=$this->mapOptions?>,
+            geoJson: <?=$this->geoJson?>,
+            filterSelector: 'input[data-filter]'
+        });
+    </script>
+
+<?php $this->endblock(); ?>

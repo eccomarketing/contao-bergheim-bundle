@@ -7,7 +7,7 @@
       </trans-unit>
       <trans-unit id="tl_calendar_events.poi.1">
         <source>Here a venue can be assigned based on a POI record.</source>
-        <target>Hier kann ein Veranstaltungsort anhand eines POI-Datensatzes zugewisen werden.</target>
+        <target>Hier kann ein Veranstaltungsort anhand eines POI-Datensatzes zugewiesen werden.</target>
       </trans-unit>
     </body>
   </file>

@@ -8,6 +8,7 @@ use Contao\System;
 $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'poi_listMode';
 
 // Add palettes to tl_module
+$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_map']              = '{title_legend},name,headline,type;{config_legend},map_min,map_max,map_zoom,map_latitude,map_longitude;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_list']             = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_listbranches']     = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_branches,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_listcategories']   = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_categories,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
@@ -108,6 +109,48 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['poi_addTags'] = array
     'inputType'               => 'checkbox',
     'eval'                    => array('tl_class'=>'w50 m12'),
     'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['map_zoom'] = array
+(
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options'                 => range(0,20),
+    'eval'                    => array('tl_class'=>'w50'),
+    'sql'                     => "int(10) unsigned NOT NULL default 13"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['map_max'] = array
+(
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options'                 => range(0,20),
+    'eval'                    => array('tl_class'=>'w50'),
+    'sql'                     => "int(10) unsigned NOT NULL default 18"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['map_min'] = array
+(
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options'                 => range(0,20),
+    'eval'                    => array('tl_class'=>'w50'),
+    'sql'                     => "int(10) unsigned NOT NULL default 6"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['map_latitude'] = array
+(
+    'exclude'                 => true,
+    'inputType'               => 'text',
+    'eval'                    => array('tl_class'=>'w50 clr', 'rgxp' => 'digit'),
+    'sql'                     => "varchar(255) NOT NULL default '51.165691'"
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['map_longitude'] = array
+(
+    'exclude'                 => true,
+    'inputType'               => 'text',
+    'eval'                    => array('tl_class'=>'w50', 'rgxp' => 'digit'),
+    'sql'                     => "varchar(255) NOT NULL default '10.451526'"
 );
 
 

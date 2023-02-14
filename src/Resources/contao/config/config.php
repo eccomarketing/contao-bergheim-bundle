@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Oveleon\ContaoBergheimBundle\Model\BranchModel;
 use Oveleon\ContaoBergheimBundle\Model\CategoryModel;
-use Oveleon\ContaoBergheimBundle\Model\PoiModel;
 use Oveleon\ContaoBergheimBundle\Model\TagModel;
+use Oveleon\ContaoBergheimBundle\Model\PoiModel;
 
 /**
  * This file is part of Contao Bergheim Bundle.
@@ -37,5 +37,5 @@ $GLOBALS['BE_MOD']['bergheim'] = [
 // Models
 $GLOBALS['TL_MODELS']['tl_bm_branch']   = BranchModel::class;
 $GLOBALS['TL_MODELS']['tl_bm_category'] = CategoryModel::class;
-$GLOBALS['TL_MODELS']['tl_bm_poi']      = PoiModel::class;
 $GLOBALS['TL_MODELS']['tl_bm_tag']      = TagModel::class;
+$GLOBALS['TL_MODELS']['tl_bm_poi']      = PoiModel::class;

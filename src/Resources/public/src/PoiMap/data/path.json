@@ -1,0 +1,5 @@
+{
+  "tileLayerPath": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  "markerBasePath": "files/marker/",
+  "markerFileExtension": "svg"
+}

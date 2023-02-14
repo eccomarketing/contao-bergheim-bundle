@@ -33,6 +33,14 @@
         <source>Here you need to select the icon for the map indicator.</source>
         <target>Hier muss das Icon für den Kartenindikator ausgewählt werden.</target>
       </trans-unit>
+      <trans-unit id="tl_bm_tag.favorite.0">
+        <source>Als Favorit deklarieren</source>
+        <target>Als Favorit deklarieren</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_tag.favorite.1">
+        <source>Tags that have been declared as favorites are displayed above the map as "Quick-Filter"</source>
+        <target>Tags, welche als Favorit deklariert wurden, werden oberhalb der Karte als "Quick-Filter" angezeigt</target>
+      </trans-unit>
       <trans-unit id="tl_bm_tag.tstamp.0">
         <source>Revision date</source>
         <target>Änderungsdatum</target>

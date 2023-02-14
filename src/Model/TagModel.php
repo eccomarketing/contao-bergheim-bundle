@@ -11,6 +11,7 @@ use Contao\Model;
  * @property integer $tstamp
  * @property string  $title
  * @property string  $alias
+ * @property bool    $favorite
  *
  * @method static TagModel|null findById($id, array $opt=array())
  * @method static TagModel|null findByPk($id, array $opt=array())

@@ -75,7 +75,7 @@ $GLOBALS['TL_DCA']['tl_bm_tag'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{title_legend},title,alias;{icon_legend},iconSRC;',
+        'default'                     => '{title_legend},title,alias;{icon_legend},iconSRC;favorite;',
     ),
 
     // Fields
@@ -100,6 +100,13 @@ $GLOBALS['TL_DCA']['tl_bm_tag'] = array
             'search'                  => true,
             'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
             'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'favorite' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50'),
+            'sql'                     => "char(1) NOT NULL default ''"
         ),
         'alias' => array
         (
