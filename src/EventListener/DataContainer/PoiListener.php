@@ -70,7 +70,7 @@ class PoiListener
     }
 
     #[AsCallback(table: 'tl_bm_poi', target: 'fields.categories.options', priority: 100)]
-    public function getProjectTypes(DataContainer $dc): array
+    public function getProjectTypes($dc): array
     {
         // Get branch record by chosen branch id
         if($dc->activeRecord && $dc->activeRecord->branch && ($branch = BranchModel::findByPk($dc->activeRecord->branch)))
