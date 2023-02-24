@@ -11,7 +11,7 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "contao/core-bundle":"^4.9 || ^4.13",
-        "codefog/contao-haste": "^4.25",
+        "codefog/contao-haste": "^5.0",
         "terminal42/contao-fineuploader": "^3.4"
     },
     "require-dev": {
