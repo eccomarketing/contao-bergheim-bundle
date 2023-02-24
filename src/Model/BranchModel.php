@@ -10,6 +10,7 @@ use Contao\Model;
  * @property integer           $id
  * @property integer           $tstamp
  * @property string            $title
+ * @property string            $categories
  * @property string|array|null $iconSRC
  *
  * @method static BranchModel|null findById($id, array $opt=array())

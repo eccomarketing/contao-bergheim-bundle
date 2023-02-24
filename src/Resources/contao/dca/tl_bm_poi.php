@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         '__selector__'                => ['type'],
         'default'                     => '{config_legend},type;',
         'poi'                         => '{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},mainImageSRC,imagesSRC;{contact_legend},postal,city,street,houseNumber;{geodata_legend:hide},lat,lng;{connection_legend:hide},branch,categories,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
-        'showcase'                    => '{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},logoSRC,mainImageSRC,imagesSRC;{contact_legend},company,postal,city,street,houseNumber,phone,mobile,email,website,openingHours;{geodata_legend:hide},lat,lng;{social_media_legend:hide},facebookUrl,instagramUrl,tiktokUrl,youtubeUrl,pinterestUrl,xingUrl,linkedinUrl;{connection_legend:hide},branch,categories,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
+        'showcase'                    => 'messages,deleteMessages;{title_legend},title,author,alias,type;{meta_legend},pageTitle,robots,metaDescription,serpPreview;{description_legend},subtitle,teaser,description,extraDescription;{image_legend},logoSRC,mainImageSRC,imagesSRC;{contact_legend},company,postal,city,street,houseNumber,phone,mobile,email,website,openingHoursMonday,openingHoursTuesday,openingHoursWednesday,openingHoursThursday,openingHoursFriday,openingHoursSaturday,openingHoursSunday,openingHours;{geodata_legend:hide},lat,lng;{social_media_legend:hide},facebookUrl,instagramUrl,tiktokUrl,youtubeUrl,pinterestUrl,xingUrl,linkedinUrl;{connection_legend:hide},branch,categories,tags;{expert_legend:hide},cssClass;{publish_legend},published,publishData,start,stop',
     ),
 
     // Fields
@@ -145,7 +145,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'inputType'               => 'text',
             'sorting'                 => true,
             'search'                  => true,
-            'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['mandatory'=>true, 'decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'alias' => array
@@ -178,7 +178,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => array('maxlength'=>255, 'decodeEntities'=>true, 'tl_class'=>'w50'),
+            'eval'                    => array('maxlength'=>255, 'decodeEntities'=>true, 'tl_class'=>'w50', 'feEditable'=>true),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'robots' => array
@@ -195,30 +195,22 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'textarea',
-            'eval'                    => array('style'=>'height:60px', 'decodeEntities'=>true, 'tl_class'=>'clr'),
+            'eval'                    => array('style'=>'height:60px', 'decodeEntities'=>true, 'tl_class'=>'clr', 'feEditable'=>true),
             'sql'                     => "text NULL"
         ),
-        /*'serpPreview' => array
-        (
-            'label'                   => &$GLOBALS['TL_LANG']['MSC']['serpPreview'],
-            'exclude'                 => true,
-            'inputType'               => 'serpPreview',
-            'eval'                    => array('url_callback'=>array('tl_bm_poi', 'getSerpUrl'), 'title_tag_callback'=>array('tl_bm_poi', 'getTitleTag'), 'titleFields'=>array('pageTitle', 'title'), 'descriptionFields'=>array('metaDescription', 'teaser')),
-            'sql'                     => null
-        ),*/
         'subtitle' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
             'search'                  => true,
-            'eval'                    => ['decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['decodeEntities'=>true, 'maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'description' => array
         (
             'exclude'                 => true,
             'inputType'               => 'textarea',
-            'eval'                    => ['mandatory'=>true, 'rte'=>'tinyMCE', 'tl_class'=>'clr'],
+            'eval'                    => ['mandatory'=>true, 'rte'=>'tinyMCE', 'tl_class'=>'clr', 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'teaser' => array
@@ -226,35 +218,35 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'inputType'               => 'textarea',
             'search'                  => true,
-            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr'],
+            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr', 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'extraDescription' => array
         (
             'exclude'                 => true,
             'inputType'               => 'textarea',
-            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr'],
+            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr', 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'logoSRC' => array
         (
             'exclude'                 => true,
             'inputType'               => 'fileTree',
-            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr'],
+            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr', 'feEditable'=>true],
             'sql'                     => "binary(16) NULL"
         ),
         'mainImageSRC' => array
         (
             'exclude'                 => true,
             'inputType'               => 'fileTree',
-            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr'],
+            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr', 'feEditable'=>true],
             'sql'                     => "binary(16) NULL"
         ),
         'imagesSRC' => array
         (
             'exclude'                 => true,
             'inputType'               => 'fileTree',
-            'eval'                    => ['multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'files'=>true],
+            'eval'                    => ['multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'orderSRC', 'files'=>true, 'feEditable'=>true],
             'sql'                     => "blob NULL",
         ),
         'orderSRC' => array
@@ -267,7 +259,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'city' => array
@@ -275,7 +267,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default 'Bergheim'"
         ),
         'street' => array
@@ -283,28 +275,28 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'houseNumber' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'lat' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'lng' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'company' => array
@@ -312,7 +304,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255],
+            'eval'                    => ['maxlength'=>255, 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'phone' => array
@@ -320,7 +312,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'mobile' => array
@@ -328,7 +320,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'email' => array
@@ -336,7 +328,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['maxlength'=>255, 'rgxp'=>'email', 'unique'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50'],
+            'eval'                    => ['maxlength'=>255, 'rgxp'=>'email', 'unique'=>true, 'decodeEntities'=>true, 'tl_class'=>'w50', 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'website' => array
@@ -344,70 +336,126 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>HttpUrlListener::RGXP_NAME, 'maxlength'=>255, 'tl_class'=>'w50'],
+            'eval'                    => ['rgxp'=>HttpUrlListener::RGXP_NAME, 'maxlength'=>255, 'tl_class'=>'w50', 'feEditable'=>true],
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'openingHoursMonday' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => ['maxlength'=>255, 'tl_class' => 'clr', 'feEditable'=>true],
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'openingHoursTuesday' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => ['maxlength'=>255, 'feEditable'=>true],
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'openingHoursWednesday' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => ['maxlength'=>255, 'feEditable'=>true],
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'openingHoursThursday' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => ['maxlength'=>255, 'feEditable'=>true],
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'openingHoursFriday' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => ['maxlength'=>255, 'feEditable'=>true],
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'openingHoursSaturday' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => ['maxlength'=>255, 'feEditable'=>true],
+            'sql'                     => "varchar(255) NOT NULL default ''"
+        ),
+        'openingHoursSunday' => array
+        (
+            'exclude'                 => true,
+            'search'                  => true,
+            'inputType'               => 'text',
+            'eval'                    => ['maxlength'=>255, 'feEditable'=>true],
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
         'openingHours' => array
         (
             'exclude'                 => true,
             'inputType'               => 'textarea',
-            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr'],
+            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr', 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'facebookUrl' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'instagramUrl' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'tiktokUrl' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'youtubeUrl' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'pinterestUrl' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'xingUrl' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'linkedinUrl' => array
         (
             'exclude'                 => true,
             'inputType'               => 'text',
-            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048],
+            'eval'                    => ['rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>2048, 'feEditable'=>true],
             'sql'                     => "text NULL"
         ),
         'branch' => array
         (
             'exclude'                 => true,
             'inputType'               => 'select',
-            'eval'                    => ['mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50'],
+            'eval'                    => ['mandatory'=>true, 'chosen'=>true, 'tl_class'=>'w50', 'submitOnChange' => true, 'feEditable'=>true],
             'foreignKey'              => 'tl_bm_branch.title',
             'sql'                     => "int(10) unsigned NOT NULL default 0",
             'relation'                => array('type'=>'hasOne', 'load'=>'lazy')
@@ -417,10 +465,8 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'exclude'                 => true,
             'filter'                  => true,
             'inputType'               => 'checkbox',
-            'foreignKey'              => 'tl_bm_category.title',
-            'eval'                    => array('multiple'=>true, 'tl_class' => 'clr'),
-            'sql'                     => "blob NULL",
-            'relation'                => array('type'=>'hasMany', 'load'=>'lazy')
+            'eval'                    => array('multiple'=>true, 'tl_class' => 'clr', 'feEditable'=>true),
+            'sql'                     => "blob NULL"
         ),
         'tags' => array
         (
@@ -428,9 +474,30 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'filter'                  => true,
             'inputType'               => 'checkbox',
             'foreignKey'              => 'tl_bm_tag.title',
-            'eval'                    => array('multiple'=>true, 'tl_class' => 'clr'),
+            'eval'                    => array('multiple'=>true, 'tl_class' => 'clr', 'feEditable'=>true),
             'sql'                     => "blob NULL",
             'relation'                => array('type'=>'hasMany', 'load'=>'lazy')
+        ),
+        'message' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'textarea',
+            'eval'                    => ['rte'=>'tinyMCE', 'tl_class'=>'clr', 'feEditable'=>true],
+            'sql'                     => "text NULL"
+        ),
+        'messages' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'textarea',
+            'eval'                    => ['tl_class'=>'clr'],
+            'sql'                     => "blob NULL",
+        ),
+        'deleteMessages' => array
+        (
+            'exclude'                 => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('tl_class'=>'w50', 'submitOnChange' => true),
+            'sql'                     => "char(1) NOT NULL default ''"
         ),
         'cssClass' => array
         (
@@ -446,7 +513,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
             'filter'                  => true,
             'flag'                    => DataContainer::SORT_INITIAL_LETTER_ASC,
             'inputType'               => 'checkbox',
-            'eval'                    => array('tl_class'=>'w50'),
+            'eval'                    => array('tl_class'=>'w50', 'feEditable'=>true),
             'sql'                     => "char(1) NOT NULL default ''"
         ),
         'publishData' => array
@@ -481,29 +548,3 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         )
     )
 );
-
-/**
- * Provide miscellaneous methods that are used by the data configuration array.
- */
-class tl_bm_poi extends Backend
-{
-    /**
-     * Return the SERP URL
-     *
-     * @return string
-     */
-    public function getSerpUrl()
-    {
-        return '';
-    }
-
-    /**
-     * Return the title tag from the associated page layout
-     *
-     * @return string
-     */
-    public function getTitleTag()
-    {
-        return '';
-    }
-}

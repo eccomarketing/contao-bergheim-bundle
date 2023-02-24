@@ -5,6 +5,10 @@
         <source>Title and redirect page</source>
         <target>Titel und Weiterleitung</target>
       </trans-unit>
+      <trans-unit id="tl_bm_branch.config_legend">
+        <source>Configuration</source>
+        <target>Konfiguration</target>
+      </trans-unit>
       <trans-unit id="tl_bm_branch.icon_legend">
         <source>Icon</source>
         <target>Icon</target>
@@ -36,6 +40,14 @@
       <trans-unit id="tl_bm_branch.tstamp.0">
         <source>Revision date</source>
         <target>Änderungsdatum</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_branch.categories.0">
+        <source>Categories</source>
+        <target>Kategorien</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_branch.categories.1">
+        <source>Please select the categories of the POI record.</source>
+        <target>Bitte wählen Sie die Kategorien des POI-Datensatzes.</target>
       </trans-unit>
     </body>
   </file>

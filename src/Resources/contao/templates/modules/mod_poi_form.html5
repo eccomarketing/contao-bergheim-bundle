@@ -1,0 +1,18 @@
+<?php $GLOBALS['TL_JAVASCRIPT'][] = '/bundles/contaobergheim/build/bergheim.js'; ?>
+
+<?php $this->extend('block_unsearchable'); ?>
+
+<?php $this->block('content'); ?>
+
+<?php if($this->hasMessages): ?>
+    <?=$this->messages?>
+<?php endif; ?>
+
+<?=$this->form?>
+
+<script>
+    const form = document.querySelector('.hasteform_<?=$this->formId?> form')
+    const poiForm = new PoiForm(form);
+</script>
+
+<?php $this->endblock(); ?>

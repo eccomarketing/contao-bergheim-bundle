@@ -203,10 +203,66 @@
         <target>Bitte geben Sie eine gültige E-Mail-Adresse ein.</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHours.0">
-        <source>Opening hours</source>
-        <target>Öfnungszeiten</target>
+        <source>Opening hours (Freitext)</source>
+        <target>Öfnungszeiten (Freitext)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHours.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursMonday.0">
+        <source>Opening hours (Monday)</source>
+        <target>Öfnungszeiten (Montag)</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursMonday.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursTuesday.0">
+        <source>Opening hours (Tuesday)</source>
+        <target>Öfnungszeiten (Diesntag)</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursTuesday.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursWednesday.0">
+        <source>Opening hours (Wednesday)</source>
+        <target>Öfnungszeiten (Mittwoch)</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursWednesday.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursThursday.0">
+        <source>Opening hours (Thursday)</source>
+        <target>Öfnungszeiten (Donnerstag)</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursThursday.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursFriday.0">
+        <source>Opening hours (Friday)</source>
+        <target>Öfnungszeiten (Freitag)</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursFriday.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursSaturday.0">
+        <source>Opening hours (Saturday)</source>
+        <target>Öfnungszeiten (Samstag)</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursSaturday.1">
+        <source>Please enter the opening hours.</source>
+        <target>Bitte geben Sie die Öffnungszeiten ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursSunday.0">
+        <source>Opening hours (Sunday)</source>
+        <target>Öfnungszeiten (Sonntag)</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.openingHoursSunday.1">
         <source>Please enter the opening hours.</source>
         <target>Bitte geben Sie die Öffnungszeiten ein.</target>
       </trans-unit>
@@ -225,6 +281,19 @@
       <trans-unit id="tl_bm_poi.lng.1">
         <source>Please enter the longitude.</source>
         <target>Bitte geben Sie den Längengrad ein.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_bm_poi.message.0">
+        <source>Nachricht an das Back Office</source>
+        <target>Nachricht an das Back Office</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.messages.0">
+        <source>Nachrichten für Sie</source>
+        <target>Nachrichten für Sie</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.deleteMessages.0">
+        <source>Alle Nachrichten löschen</source>
+        <target>Alle Nachrichten löschen</target>
       </trans-unit>
 
       <trans-unit id="tl_bm_poi.facebookUrl.0">
@@ -406,6 +475,15 @@
       <trans-unit id="tl_bm_poi.list.empty">
         <source>No records could be found.</source>
         <target>Es konnten keine Datensätze gefunden werden.</target>
+      </trans-unit>
+
+      <trans-unit id="tl_bm_poi.form.submit">
+        <source>Save</source>
+        <target>Speichern</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.form.success">
+        <source>Your storefront has been successfully updated. Once your data has been verified, your storefront will be automatically published with the new data.</source>
+        <target>Ihr Schaufenster wurde erfolgreich aktualisiert. Sobald Ihre Daten geprüft wurden, wird Ihr Schaufenster automatisch mit den neuen Daten veröffentlicht.</target>
       </trans-unit>
 
       <trans-unit id="tl_bm_poi.typeFilterLabel">

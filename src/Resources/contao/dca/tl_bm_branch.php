@@ -73,7 +73,7 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{title_legend},title,jumpTo;{icon_legend},iconSRC;',
+        'default'                     => '{title_legend},title,jumpTo;{config_legend},categories;{icon_legend},iconSRC;',
     ),
 
     // Fields
@@ -114,6 +114,16 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
             'inputType'               => 'fileTree',
             'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'],
             'sql'                     => "binary(16) NULL"
-        )
+        ),
+        'categories' => array
+        (
+            'exclude'                 => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'foreignKey'              => 'tl_bm_category.title',
+            'eval'                    => array('multiple'=>true, 'mandatory' => true, 'tl_class' => 'clr'),
+            'sql'                     => "blob NULL",
+            'relation'                => array('type'=>'hasMany', 'load'=>'lazy')
+        ),
     )
 );

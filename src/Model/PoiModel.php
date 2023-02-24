@@ -36,6 +36,9 @@ use Contao\Model;
  * @property string            $mobile
  * @property string            $email
  * @property string            $website
+ * @property string            $message
+ * @property string            $messages
+ * @property integer           $deleteMessages
  * @property string|null       $openingHours
  * @property string|null       $facebookUrl
  * @property string|null       $instagramUrl
