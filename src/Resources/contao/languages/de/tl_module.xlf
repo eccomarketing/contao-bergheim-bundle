@@ -113,6 +113,14 @@
         <source>Here you can set the initial longitude of the map.</source>
         <target>Hier können Sie den initialen Längengrad der Karte festlegen.</target>
       </trans-unit>
+      <trans-unit id="tl_module.poi_editable_fields.0">
+        <source>Editable fields</source>
+        <target>Editierbare Felder</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_editable_fields.1">
+        <source>Here you can set the fields should be editable.</source>
+        <target>Hier können Sie die Felder festlegen, welche Bearbeitet werden dürfen.</target>
+      </trans-unit>
       <trans-unit id="tl_module.all">
         <source>All</source>
         <target>Alle</target>

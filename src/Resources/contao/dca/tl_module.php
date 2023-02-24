@@ -10,6 +10,7 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['__selector__'][] = 'poi_listMode';
 // Add palettes to tl_module
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_map']              = '{title_legend},name,headline,type;{config_legend},map_min,map_max,map_zoom,map_latitude,map_longitude;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_list']             = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['poi_form']             = '{title_legend},name,headline,type;{config_legend},poi_editable_fields;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_listbranches']     = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_branches,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_listcategories']   = '{title_legend},name,headline,type;{config_legend},poi_listMode,poi_categories,poi_readerModule,numberOfItems,poi_order,skipFirst,perPage,poi_addTags;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['poi_reader']           = '{title_legend},name,headline,type;{config_legend},poi_listMode;{template_legend:hide},poi_template,customTpl;{image_legend:hide},imgSize,poi_imgSize,poi_imgSizeLogo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID';
@@ -109,6 +110,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['poi_addTags'] = array
     'inputType'               => 'checkbox',
     'eval'                    => array('tl_class'=>'w50 m12'),
     'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['poi_editable_fields'] = array
+(
+    'exclude'                 => true,
+    'inputType'               => 'checkboxWizard',
+    'eval'                    => array('multiple'=>true),
+    'sql'                     => "blob NULL"
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['map_zoom'] = array
