@@ -163,6 +163,9 @@ class PoiFormController extends AbstractFrontendModuleController
                 $fieldConfig['eval']['class'] = 'editor';
             }
 
+            // Fixme: In Haste 5 wurde das eval-submitOnChange entfernt, somit müsste man hier wissen, welches Feld wird berücksichtigen sollen um die Klasse 'submit' dann zu setzen anstatt darauf zu prüfen ob submitOnChange gesetzt ist.
+            // Fixme: https://github.com/codefog/contao-haste/commit/93dcdb9043219fbff9e436268a5272e3258b968a
+
             // Set submit on change class
             if(isset($fieldConfig['eval']['submitOnChange']))
             {
