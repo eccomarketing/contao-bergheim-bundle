@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Haste\Form\Form;
+use Codefog\HasteBundle\Form\Form;
 
 /**
  * @FrontendModule(type=PoiFormController::TYPE, category="bergheim")
@@ -88,8 +88,8 @@ class PoiFormController extends AbstractFrontendModuleController
         $this->template = $template;
 
         $this->poi = PoiModel::findOneByAuthor($user->id);
-        $this->form = new Form(self::TYPE . $model->id, 'POST', fn($form) => \Input::post('FORM_SUBMIT') === $form->getFormId());
-        $this->form->bindModel($this->poi);
+        $this->form = new Form(self::TYPE . $model->id, 'POST');
+        $this->form->setBoundModel($this->poi);
 
         $this->createEditForm();
         $this->validateForm();
@@ -119,7 +119,7 @@ class PoiFormController extends AbstractFrontendModuleController
         }
 
         // Bind poi model
-        $this->form->bindModel($this->poi);
+        $this->form->setBoundModel($this->poi);
 
         // Get editable fields
         $editable = StringUtil::deserialize($this->model->poi_editable_fields, true);
@@ -163,6 +163,9 @@ class PoiFormController extends AbstractFrontendModuleController
                 $fieldConfig['eval']['class'] = 'editor';
             }
 
+            // Fixme: In Haste 5 wurde das eval-submitOnChange entfernt, somit müsste man hier wissen, welches Feld wird berücksichtigen sollen um die Klasse 'submit' dann zu setzen anstatt darauf zu prüfen ob submitOnChange gesetzt ist.
+            // Fixme: https://github.com/codefog/contao-haste/commit/93dcdb9043219fbff9e436268a5272e3258b968a
+
             // Set submit on change class
             if(isset($fieldConfig['eval']['submitOnChange']))
             {
@@ -178,7 +181,7 @@ class PoiFormController extends AbstractFrontendModuleController
         });
 
         // Add submit field
-        $this->form->addSubmitFormField('btn_submit', $this->translator->trans('tl_bm_poi.form.submit', [], 'contao_default'));
+        $this->form->addSubmitFormField($this->translator->trans('tl_bm_poi.form.submit', [], 'contao_default'), 'btn_submit');
 
         // Render form
         $this->template->form = $this->form->generate();
