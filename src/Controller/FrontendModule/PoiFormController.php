@@ -158,7 +158,7 @@ class PoiFormController extends AbstractFrontendModuleController
             }
 
             // Modify editors
-            if('tinyMCE' === ($fieldConfig['eval']['rte'] ?? null))
+            if(isset($fieldConfig['eval']['rte']) && ('tinyMCE' === $fieldConfig['eval']['rte'] || 'tinyMCE_poi' === $fieldConfig['eval']['rte']))
             {
                 $fieldConfig['eval']['class'] = 'editor';
             }
