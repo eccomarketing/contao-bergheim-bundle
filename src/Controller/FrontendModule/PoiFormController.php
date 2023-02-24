@@ -9,22 +9,17 @@ use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController
 use Contao\CoreBundle\Exception\AccessDeniedException;
 use Contao\CoreBundle\Exception\RedirectResponseException;
 use Contao\CoreBundle\ServiceAnnotation\FrontendModule;
-use Contao\File;
-use Contao\FilesModel;
-use Contao\FileUpload;
 use Contao\Message;
 use Contao\ModuleModel;
 use Contao\StringUtil;
 use Contao\Template;
-use Contao\UploadableWidgetInterface;
-use Contao\Widget;
 use Oveleon\ContaoBergheimBundle\Model\PoiModel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Codefog\HasteBundle\Form\Form;
+use Haste\Form\Form;
 
 /**
  * @FrontendModule(type=PoiFormController::TYPE, category="bergheim")
@@ -93,8 +88,8 @@ class PoiFormController extends AbstractFrontendModuleController
         $this->template = $template;
 
         $this->poi = PoiModel::findOneByAuthor($user->id);
-        $this->form = new Form(self::TYPE . $model->id, 'POST');
-        $this->form->setBoundModel($this->poi);
+        $this->form = new Form(self::TYPE . $model->id, 'POST', fn($form) => \Input::post('FORM_SUBMIT') === $form->getFormId());
+        $this->form->bindModel($this->poi);
 
         $this->createEditForm();
         $this->validateForm();
@@ -124,7 +119,7 @@ class PoiFormController extends AbstractFrontendModuleController
         }
 
         // Bind poi model
-        $this->form->setBoundModel($this->poi);
+        $this->form->bindModel($this->poi);
 
         // Get editable fields
         $editable = StringUtil::deserialize($this->model->poi_editable_fields, true);
@@ -183,7 +178,7 @@ class PoiFormController extends AbstractFrontendModuleController
         });
 
         // Add submit field
-        $this->form->addSubmitFormField($this->translator->trans('tl_bm_poi.form.submit', [], 'contao_default'), 'btn_submit');
+        $this->form->addSubmitFormField('btn_submit', $this->translator->trans('tl_bm_poi.form.submit', [], 'contao_default'));
 
         // Render form
         $this->template->form = $this->form->generate();
