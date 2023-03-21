@@ -97,6 +97,7 @@ class PoiMapController extends AbstractFrontendModuleController
             $types[$type] = $this->translator->trans('tl_bm_poi.' . $type, [], 'contao_default');
         }
 
+        // Collect only used branches, categories and tags
         if ($poiCollection = PoiModel::findPublished())
         {
             foreach ($poiCollection as $poi)
@@ -107,6 +108,7 @@ class PoiMapController extends AbstractFrontendModuleController
                 $tags = array_merge($tags, StringUtil::deserialize($poiData['tags'], true));
             }
 
+            // Remove all duplicates
             $branches = array_unique($branches);
             $categories = array_unique($categories);
             $tags = array_unique($tags);
