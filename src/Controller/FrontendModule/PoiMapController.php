@@ -97,9 +97,26 @@ class PoiMapController extends AbstractFrontendModuleController
             $types[$type] = $this->translator->trans('tl_bm_poi.' . $type, [], 'contao_default');
         }
 
-        // Create branches filter
-        if($branchesCollection = BranchModel::findAll())
+        if ($poiCollection = PoiModel::findPublished())
         {
+            foreach ($poiCollection as $poi)
+            {
+                $poiData = StringUtil::deserialize($poi->publishedData);
+                array_push($branches, $poiData['branch']);
+                $categories = array_merge($categories, StringUtil::deserialize($poiData['categories'], true));
+                $tags = array_merge($tags, StringUtil::deserialize($poiData['tags'], true));
+            }
+
+            $branches = array_unique($branches);
+            $categories = array_unique($categories);
+            $tags = array_unique($tags);
+        }
+
+        // Create branches filter
+        if($branchesCollection = BranchModel::findMultipleByIds($branches, ['order'=>'title']))
+        {
+            $branches = [];
+
             foreach ($branchesCollection as $branch)
             {
                 $branches[$branch->id] = $branch->title;
@@ -107,8 +124,10 @@ class PoiMapController extends AbstractFrontendModuleController
         }
 
         // Create categories filter
-        if($categoryCollection = CategoryModel::findAll())
+        if($categoryCollection = CategoryModel::findMultipleByIds($categories, ['order'=>'title']))
         {
+            $categories = [];
+
             foreach ($categoryCollection as $category)
             {
                 $categories[$category->id] = $category->title;
@@ -116,8 +135,10 @@ class PoiMapController extends AbstractFrontendModuleController
         }
 
         // Create tag and quick filter
-        if($tagCollection = TagModel::findAll())
+        if($tagCollection = TagModel::findMultipleByIds($tags, ['order'=>'title']))
         {
+            $tags = [];
+
             foreach ($tagCollection as $tag)
             {
                 if($tag->favorite)
