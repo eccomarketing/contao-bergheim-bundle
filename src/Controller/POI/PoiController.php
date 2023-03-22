@@ -59,7 +59,7 @@ class PoiController extends AbstractController
 
         $poiData = StringUtil::deserialize($objPoi->publishedData, true);
 
-        $objTemplate = new FrontendTemplate(Config::get('poiTooltipTemplate') ?: 'poi_tooltip_default');
+        $objTemplate = new FrontendTemplate(Config::get('bergheimPoiTooltipTemplate') ?: 'poi_tooltip_default');
         $objTemplate->setData($poiData);
 
         if ($poiData['mainImageSRC'])
@@ -67,7 +67,8 @@ class PoiController extends AbstractController
             $figureBuilder = System::getContainer()
                 ->get('contao.image.studio')
                 ->createFigureBuilder()
-                ->from($poiData['mainImageSRC']);
+                ->from($poiData['mainImageSRC'])
+                ->setSize(Config::get('bergheimPoiTooltipSize'));
 
             if (null !== ($figure = $figureBuilder->buildIfResourceExists()))
             {
