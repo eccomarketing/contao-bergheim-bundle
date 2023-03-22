@@ -11,6 +11,7 @@ use Contao\StringUtil;
 use Contao\System;
 use Oveleon\ContaoBergheimBundle\Model\BranchModel;
 use Oveleon\ContaoBergheimBundle\Model\CategoryModel;
+use Oveleon\ContaoBergheimBundle\Model\PoiModel;
 
 class POI extends System
 {
@@ -170,5 +171,43 @@ class POI extends System
         }
 
         return $strPoiUrl;
+    }
+
+    public static function storeGeoData(DataContainer $dc): void
+    {
+        // Return if there is no active record (override all)
+        if (!$dc->activeRecord)
+        {
+            return;
+        }
+
+        if (!empty($dc->activeRecord->lat) || !empty($dc->activeRecord->lng))
+        {
+            return;
+        }
+
+        if (($geoData = self::determineGeoData($dc->activeRecord->street, $dc->activeRecord->houseNumber, $dc->activeRecord->postal, $dc->activeRecord->city)) !== false)
+        {
+            $objPoi = PoiModel::findByPk($dc->activeRecord->id);
+
+            $objPoi->lat = $geoData['lat'];
+            $objPoi->lng = $geoData['lng'];
+
+            $objPoi->save();
+        }
+    }
+
+    protected static function determineGeoData($street, $houseNumber, $postal, $city)
+    {
+        // Return if not possible or allowed
+        if (!Config::get('googleApiToken'))
+        {
+            return false;
+        }
+
+        if (!($street && $houseNumber && $postal && $city))
+        {
+            return false;
+        }
     }
 }

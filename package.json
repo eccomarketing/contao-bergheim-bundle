@@ -12,7 +12,6 @@
     },
     "devDependencies": {
         "css-loader": "^6.7.1",
-        "node-sass": "^7.0.1",
         "sass": "^1.52.2",
         "sass-loader": "^13.0.0",
         "style-loader": "^3.3.1",

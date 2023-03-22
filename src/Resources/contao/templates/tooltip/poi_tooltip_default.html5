@@ -1,0 +1,10 @@
+<div class="poi_tooltip_default">
+
+    <?php if ($this->addImage): ?>
+        <?php $this->insert('image', $this->arrData); ?>
+    <?php endif; ?>
+
+    <div class="poi_data">
+        <p><?= $this->title ?></p>
+    </div>
+</div>
