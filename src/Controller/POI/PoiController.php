@@ -83,10 +83,8 @@ class PoiController extends AbstractController
 
         return new JsonResponse([
             'status'  => self::STATUS_OK,
-            'results' => [[
-                'id'       => $objPoi->id,
-                'template' => $objTemplate->parse()
-            ]]
+            'id'       => $objPoi->id,
+            'template' => $objTemplate->parse()
         ]);
     }
 }

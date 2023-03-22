@@ -1,5 +1,6 @@
 {
   "tileLayerPath": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
   "markerBasePath": "files/marker/",
-  "markerFileExtension": "svg"
+  "markerFileExtension": "svg",
+  "apiRoute": "api/poi/read/"
 }
