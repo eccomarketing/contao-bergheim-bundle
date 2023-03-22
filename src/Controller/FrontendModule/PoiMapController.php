@@ -223,7 +223,7 @@ class PoiMapController extends AbstractFrontendModuleController
                 ]
             ],
             'properties'  => [
-                'id'         => $poi->id,
+                'id'         => (string) $poi->id,
                 'type'       => $poi->type,
                 'branch'     => $poi->branch,
                 'categories' => array_map('intval', StringUtil::deserialize($poi->categories, true)),
