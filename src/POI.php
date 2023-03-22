@@ -173,7 +173,7 @@ class POI extends System
         return $strPoiUrl;
     }
 
-    public static function storeGeoData(DataContainer $dc): void
+    public static function storeGeoData(DataContainer &$dc): void
     {
         // Return if there is no active record (override all)
         if (!$dc->activeRecord)
@@ -194,10 +194,13 @@ class POI extends System
             $objPoi->lng = $geoData['lng'];
 
             $objPoi->save();
+
+            $dc->activeRecord->lat = $geoData['lat'];
+            $dc->activeRecord->lng = $geoData['lng'];
         }
     }
 
-    protected static function determineGeoData($street, $houseNumber, $postal, $city)
+    public static function determineGeoData($street, $houseNumber, $postal, $city)
     {
         // Return if not possible or allowed
         if (!Config::get('googleApiToken'))
@@ -209,5 +212,47 @@ class POI extends System
         {
             return false;
         }
+
+        $strAddress = urlencode(sprintf('%s %s, %s %s', $street, $houseNumber, $postal, $city));
+        $strUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$strAddress.'&key='.Config::get('googleApiToken');
+
+        $arrContent = json_decode(self::getFileContent($strUrl));
+
+        if ($arrContent && $arrContent->results && \is_array($arrContent->results))
+        {
+            $lat = $arrContent->results[0]->geometry->location->lat;
+            $lng = $arrContent->results[0]->geometry->location->lng;
+
+            if (!is_numeric($lat) || !is_numeric($lng))
+            {
+                return false;
+            }
+
+            return [
+                'lat' => $lat,
+                'lng' => $lng,
+            ];
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $url
+     *
+     * @return bool|string
+     */
+    public static function getFileContent($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        $content = curl_exec($ch);
+        curl_close($ch);
+
+        return $content;
     }
 }

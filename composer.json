@@ -12,7 +12,9 @@
         "php": "^7.4 || ^8.0",
         "contao/core-bundle":"^4.9 || ^4.13",
         "codefog/contao-haste": "^4.25",
-        "terminal42/contao-fineuploader": "^3.4"
+        "terminal42/contao-fineuploader": "^3.4",
+        "ext-json": "*",
+        "ext-curl": "*"
     },
     "require-dev": {
         "contao/manager-plugin": "^2.0"

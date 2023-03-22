@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_bm_poi'] = array
         'onsubmit_callback' => array
         (
             array(POI::class, 'createAndCleanUpRelations'),
-            array(POI::class, 'determineGeoData'),
+            array(POI::class, 'storeGeoData'),
             array(POI::class, 'publishRecord')
         ),
         'sql' => array
