@@ -13,10 +13,15 @@
 
     <div class="poi-map-container">
         <div class="quick-filter">
-            <?php foreach ($this->quickFilter as $tagId => $label): ?>
+            <?php foreach ($this->quickFilter as $tagId => $tag): ?>
                 <div class="widget">
                     <input type="checkbox" value="<?=$tagId?>" data-filter="tag" id="tag-<?=$tagId?>" />
-                    <label for="tag-<?=$tagId?>"><?=$label?></label>
+                    <label for="tag-<?=$tagId?>">
+                        <?php if($tag->hasIcon): ?>
+                            <img src="<?=$tag->icon?>" width="26" height="26" alt="icon"/>
+                        <?php endif; ?>
+                        <?=$tag->title?>
+                    </label>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -24,37 +29,56 @@
         <div class="filter">
             <div class="type-filter">
                 <h3><?=$this->typeFilterLabel?></h3>
-                <?php foreach ($this->typeFilter as $type => $label): ?>
+                <?php foreach ($this->typeFilter as $typeId => $label): ?>
                     <div class="widget">
-                        <input type="checkbox" value="<?=$type?>" data-filter="type" id="type-<?=$type?>" checked />
-                        <label for="type-<?=$type?>"><?=$label?></label>
+                        <input type="checkbox" value="<?=$typeId?>" data-filter="type" id="type-<?=$typeId?>" checked />
+                        <label for="type-<?=$typeId?>"><?=$label?></label>
                     </div>
                 <?php endforeach; ?>
             </div>
-            <div class="branch-filter">
-                <h4><?=$this->branchFilterLabel?></h4>
-                <?php foreach ($this->branchFilter as $branchId => $label): ?>
-                    <div class="widget">
-                        <input type="checkbox" value="<?=$branchId?>" data-filter="branch" id="branch-<?=$branchId?>" />
-                        <label for="branch-<?=$branchId?>"><?=$label?></label>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="category-filter">
-                <h4><?=$this->categoryFilterLabel?></h4>
-                <?php foreach ($this->categoryFilter as $categoryId => $label): ?>
-                    <div class="widget">
-                        <input type="checkbox" value="<?=$categoryId?>" data-filter="category" id="category-<?=$categoryId?>" />
-                        <label for="category-<?=$categoryId?>"><?=$label?></label>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+            <?php if($this->hasBranchFilter): ?>
+                <div class="branch-filter">
+                    <h4><?=$this->branchFilterLabel?></h4>
+                    <?php foreach ($this->branchFilter as $branchId => $branch): ?>
+                        <div class="widget">
+                            <input type="checkbox" value="<?=$branchId?>" data-filter="branch" id="branch-<?=$branchId?>" />
+                            <label for="branch-<?=$branchId?>">
+                                <?php if($branch->hasIcon): ?>
+                                    <img src="<?=$branch->icon?>" width="26" height="26" alt="icon"/>
+                                <?php endif; ?>
+                                <?=$branch->title?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <?php if($this->hasCategoryFilter): ?>
+                <div class="category-filter">
+                    <h4><?=$this->categoryFilterLabel?></h4>
+                    <?php foreach ($this->categoryFilter as $categoryId => $category): ?>
+                        <div class="widget">
+                            <input type="checkbox" value="<?=$categoryId?>" data-filter="category" id="category-<?=$categoryId?>" />
+                            <label for="category-<?=$categoryId?>">
+                                <?php if($category->hasIcon): ?>
+                                    <img src="<?=$category->icon?>" width="26" height="26" alt="icon"/>
+                                <?php endif; ?>
+                                <?=$category->title?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
             <div class="tag-filter">
                 <h4><?=$this->tagFilterLabel?></h4>
-                <?php foreach ($this->tagFilter as $tagId => $label): ?>
+                <?php foreach ($this->tagFilter as $tagId => $tag): ?>
                     <div class="widget">
                         <input type="checkbox" value="<?=$tagId?>" data-filter="tag" id="tag-<?=$tagId?>" />
-                        <label for="tag-<?=$tagId?>"><?=$label?></label>
+                        <label for="tag-<?=$tagId?>">
+                            <?php if($tag->hasIcon): ?>
+                                <img src="<?=$tag->icon?>" width="26" height="26" alt="icon"/>
+                            <?php endif; ?>
+                            <?=$tag->title?>
+                        </label>
                     </div>
                 <?php endforeach; ?>
             </div>

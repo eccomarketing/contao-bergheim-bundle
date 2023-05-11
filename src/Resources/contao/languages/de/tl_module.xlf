@@ -1,6 +1,20 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <file datatype="php" original="src/Resources/contao/languages/en/tl_module.php" source-language="en" target-language="de">
     <body>
+      <trans-unit id="tl_module.filter_legend">
+        <source>Filter</source>
+        <target>Filter</target>
+      </trans-unit>
+
+      <trans-unit id="tl_module.branch">
+        <source>Branch</source>
+        <target>Branche</target>
+      </trans-unit>
+      <trans-unit id="tl_module.category">
+        <source>Category</source>
+        <target>Kategorie</target>
+      </trans-unit>
+
       <trans-unit id="tl_module.poi_listMode.0">
         <source>POI filter mode</source>
         <target>POI Filter-Modus</target>
@@ -120,6 +134,14 @@
       <trans-unit id="tl_module.poi_editable_fields.1">
         <source>Here you can set the fields should be editable.</source>
         <target>Hier können Sie die Felder festlegen, welche Bearbeitet werden dürfen.</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_filterSections.0">
+        <source>Filterbereiche</source>
+        <target>Filterbereiche</target>
+      </trans-unit>
+      <trans-unit id="tl_module.poi_filterSections.1">
+        <source>Hier können Sie definieren welche Filter im Frontend zur Verfügung stehen.</source>
+        <target>Hier können Sie definieren welche Filter im Frontend zur Verfügung stehen.</target>
       </trans-unit>
       <trans-unit id="tl_module.all">
         <source>All</source>
