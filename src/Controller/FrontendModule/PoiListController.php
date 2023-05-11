@@ -198,7 +198,7 @@ class PoiListController extends AbstractFrontendModuleController
                 return PoiModel::countPublishedByCategories($arrCategories);
         }
 
-        return PoiModel::countPublished();
+        return PoiModel::countPublished() ?? 0;
     }
 
     /**
