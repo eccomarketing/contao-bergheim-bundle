@@ -81,7 +81,7 @@ export default class Form
             const editor = new Quill(container, {
                 theme: 'snow',
                 modules: {
-                    toolbar: ['bold', 'italic', 'underline', 'strike']
+                    toolbar: ['bold', 'italic']
                 }
             })
 
