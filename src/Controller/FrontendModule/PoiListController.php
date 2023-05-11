@@ -21,6 +21,7 @@ use Contao\Template;
 use Oveleon\ContaoBergheimBundle\Model\BranchModel;
 use Oveleon\ContaoBergheimBundle\Model\PoiModel;
 use Oveleon\ContaoBergheimBundle\Model\TagModel;
+use Oveleon\ContaoBergheimBundle\POI;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -258,9 +259,9 @@ class PoiListController extends AbstractFrontendModuleController
 
         $objTemplate->class = $strClass;
         $objTemplate->hasSubTitle = $objPoi->subtitle ? true : false;
-        $objTemplate->linkTitle = $this->generateLink($objPoi->title, $objPoi);
-        $objTemplate->linkMore = $this->generateLink($GLOBALS['TL_LANG']['MSC']['linkMore'], $objPoi);
-        $objTemplate->link = $this->getPoiUrl($objPoi);
+        $objTemplate->linkTitle = POI::generateLink($objPoi->title, $objPoi);
+        $objTemplate->linkMore = POI::generateLink($GLOBALS['TL_LANG']['MSC']['linkMore'], $objPoi);
+        $objTemplate->link = POI::getUrl($objPoi);
 
         if (empty($objPoi->teaser))
         {
@@ -310,35 +311,6 @@ class PoiListController extends AbstractFrontendModuleController
         }
 
         return $objTemplate->parse();
-    }
-
-    protected function generateLink($strLink, $objPoi): string
-    {
-        return sprintf(
-            '<a href="%s" title="%s">%s</a>',
-            $this->getPoiUrl($objPoi),
-            StringUtil::specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], $objPoi->title), true),
-            $strLink
-        );
-    }
-
-    protected function getPoiUrl($objPoi): string
-    {
-        $objBranch = BranchModel::findByPk($objPoi->branch);
-        $objPage = $objBranch->getRelated('jumpTo');
-
-        if (!$objPage instanceof PageModel)
-        {
-            $strPoiUrl = StringUtil::ampersand(Environment::get('request'));
-        }
-        else
-        {
-            $params = (Config::get('useAutoItem') ? '/' : '/items/') . ($objPoi->alias ?: $objPoi->id);
-
-            $strPoiUrl = StringUtil::ampersand($objPage->getFrontendUrl($params));
-        }
-
-        return $strPoiUrl;
     }
 
     protected function getTags($objPois): array

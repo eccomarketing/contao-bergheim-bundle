@@ -486,6 +486,10 @@
         <target>Ihr Schaufenster wurde erfolgreich aktualisiert. Sobald Ihre Daten geprüft wurden, wird Ihr Schaufenster automatisch mit den neuen Daten veröffentlicht.</target>
       </trans-unit>
 
+      <trans-unit id="tl_bm_poi.detailLinkTitle">
+        <source>Details</source>
+        <target>Details</target>
+      </trans-unit>
       <trans-unit id="tl_bm_poi.typeFilterLabel">
         <source>Filtern</source>
         <target>Filtern</target>

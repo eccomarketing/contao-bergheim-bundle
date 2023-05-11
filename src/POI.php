@@ -143,6 +143,7 @@ class POI extends System
         if ($dc->activeRecord->publishData || empty($dc->activeRecord->publishedData))
         {
             $arrData = $dc->activeRecord->row();
+            unset($arrData['publishedData']);
 
             $this->Database->prepare("UPDATE tl_bm_poi SET publishedData=?, publishData='', dirty='' WHERE id=?")
                 ->execute(serialize($arrData), $dc->activeRecord->id);
@@ -152,6 +153,16 @@ class POI extends System
             $this->Database->prepare("UPDATE tl_bm_poi SET dirty='1' WHERE id=?")
                 ->execute($dc->activeRecord->id);
         }
+    }
+
+    public static function generateLink($strLink, $objPoi): string
+    {
+        return sprintf(
+            '<a href="%s" title="%s">%s</a>',
+            self::getUrl($objPoi),
+            StringUtil::specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], $objPoi->title), true),
+            $strLink
+        );
     }
 
     public static function getUrl($objPoi): string
