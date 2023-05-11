@@ -14,7 +14,8 @@ export default class Marker extends LeafletMarker
 
         this.properties = feature.properties
 
-        this.createTooltip()
+        this.createPopup()
+        //this.createTooltip()
         this.bindEvents()
     }
 
@@ -27,9 +28,36 @@ export default class Marker extends LeafletMarker
         })
     }
 
+    private createPopup(): void
+    {
+        let content = '<div class="poi_tooltip_default is--loading"></div>';
+        this.bindPopup(content, {
+            offset: [0, -25],
+            closeButton: false
+        })
+    }
+
     private bindEvents(): void
     {
-        this.on('click', () => document.location.href = this.properties.url)
+        this.onPopupOpen()
+        //this.on('click', () => document.location.href = this.properties.url)
+    }
+
+    private onPopupOpen()
+    {
+        this.on('popupopen', async (e) => {
+            await this.getPopupData(this.properties.id)
+        })
+    }
+
+    private async getPopupData(id)
+    {
+        const response = await fetch(paths.apiRoute + id)
+            .then((response) => response.json())
+            .then((data) => data)
+
+        const content = await response.template
+        this.setPopupContent(content)
     }
 
     private static getIconByType(type): Icon

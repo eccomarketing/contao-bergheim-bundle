@@ -11,6 +11,7 @@ use Contao\StringUtil;
 use Contao\System;
 use Oveleon\ContaoBergheimBundle\Model\BranchModel;
 use Oveleon\ContaoBergheimBundle\Model\CategoryModel;
+use Oveleon\ContaoBergheimBundle\Model\PoiModel;
 
 class POI extends System
 {
@@ -170,5 +171,88 @@ class POI extends System
         }
 
         return $strPoiUrl;
+    }
+
+    public static function storeGeoData(DataContainer &$dc): void
+    {
+        // Return if there is no active record (override all)
+        if (!$dc->activeRecord)
+        {
+            return;
+        }
+
+        if (!empty($dc->activeRecord->lat) || !empty($dc->activeRecord->lng))
+        {
+            return;
+        }
+
+        if (($geoData = self::determineGeoData($dc->activeRecord->street, $dc->activeRecord->houseNumber, $dc->activeRecord->postal, $dc->activeRecord->city)) !== false)
+        {
+            $objPoi = PoiModel::findByPk($dc->activeRecord->id);
+
+            $objPoi->lat = $geoData['lat'];
+            $objPoi->lng = $geoData['lng'];
+
+            $objPoi->save();
+
+            $dc->activeRecord->lat = $geoData['lat'];
+            $dc->activeRecord->lng = $geoData['lng'];
+        }
+    }
+
+    public static function determineGeoData($street, $houseNumber, $postal, $city)
+    {
+        // Return if not possible or allowed
+        if (!Config::get('googleApiToken'))
+        {
+            return false;
+        }
+
+        if (!($street && $houseNumber && $postal && $city))
+        {
+            return false;
+        }
+
+        $strAddress = urlencode(sprintf('%s %s, %s %s', $street, $houseNumber, $postal, $city));
+        $strUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$strAddress.'&key='.Config::get('googleApiToken');
+
+        $arrContent = json_decode(self::getFileContent($strUrl));
+
+        if ($arrContent && $arrContent->results && \is_array($arrContent->results))
+        {
+            $lat = $arrContent->results[0]->geometry->location->lat;
+            $lng = $arrContent->results[0]->geometry->location->lng;
+
+            if (!is_numeric($lat) || !is_numeric($lng))
+            {
+                return false;
+            }
+
+            return [
+                'lat' => $lat,
+                'lng' => $lng,
+            ];
+        }
+
+        return false;
+    }
+
+    /**
+     * @param $url
+     *
+     * @return bool|string
+     */
+    public static function getFileContent($url)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+        $content = curl_exec($ch);
+        curl_close($ch);
+
+        return $content;
     }
 }

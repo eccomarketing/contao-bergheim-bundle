@@ -1,0 +1,12 @@
+<div class="poi_tooltip_default<?= $this->cssClass? ' '.$this->cssClass:'' ?>">
+
+  <?php if ($this->addImage): ?>
+    <?php $this->insert('image', $this->arrData); ?>
+  <?php endif; ?>
+
+  <div class="poi_data">
+    <p><?= $this->title ?></p>
+    <p><?= $this->openingHours ?></p>
+    <p><?= $this->href ?></p>
+  </div>
+</div>
