@@ -1,0 +1,16 @@
+.poi-map-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.poi-map-container .quick-filter {
+  width: 100%;
+}
+.poi-map-container .filter {
+  width: 30%;
+}
+.poi-map-container #poi-map {
+  width: 70%;
+  min-height: 500px;
+}
+
+/*# sourceMappingURL=map.css.map */

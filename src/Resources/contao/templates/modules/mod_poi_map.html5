@@ -2,6 +2,9 @@
     $GLOBALS['TL_JAVASCRIPT'][] = '/bundles/contaobergheim/build/bergheim.js';
     $GLOBALS['TL_JAVASCRIPT'][] = '/bundles/contaobergheim/src/PoiMap/assets/gesture-handling/leaflet-gesture-handling.js';
     $GLOBALS['TL_CSS'][] = '/bundles/contaobergheim/src/PoiMap/assets/gesture-handling/leaflet-gesture-handling.css';
+
+    // Layout
+    $GLOBALS['TL_CSS'][] = '/bundles/contaobergheim/src/PoiMap/styles/map.css';
 ?>
 
 <?php $this->extend('block_unsearchable'); ?>
