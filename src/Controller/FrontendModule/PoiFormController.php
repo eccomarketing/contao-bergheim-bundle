@@ -207,6 +207,7 @@ class PoiFormController extends AbstractFrontendModuleController
             }
 
             // Save model
+            $this->poi->dirty = 1;
             $this->poi->save();
 
             // Show message
