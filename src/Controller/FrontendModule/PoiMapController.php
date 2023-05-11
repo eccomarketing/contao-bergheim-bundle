@@ -188,6 +188,7 @@ class PoiMapController extends AbstractFrontendModuleController
         }
 
         $this->template->mapOptions = json_encode([
+            'gestureHandling' => true,
             'zoom'    => (int) $this->model->map_zoom ?: 6,
             'maxZoom' => (int) $this->model->map_max ?: 10,
             'minZoom' => (int) $this->model->map_min ?: 4,
