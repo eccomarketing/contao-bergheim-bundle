@@ -7,6 +7,8 @@ namespace Oveleon\ContaoBergheimBundle\Controller\FrontendModule;
 use Contao\Controller;
 use Contao\CoreBundle\Controller\FrontendModule\AbstractFrontendModuleController;
 use Contao\CoreBundle\ServiceAnnotation\FrontendModule;
+use Contao\FilesModel;
+use Contao\Model;
 use Contao\ModuleModel;
 use Contao\StringUtil;
 use Contao\Template;
@@ -92,6 +94,11 @@ class PoiMapController extends AbstractFrontendModuleController
         $tags = [];
         $quickFilter = [];
 
+        $filterSections = StringUtil::deserialize($this->model->poi_filterSections, true);
+
+        $hasBranchFilter = in_array('branch', $filterSections);
+        $hasCategoryFilter = in_array('category', $filterSections);
+
         foreach ($GLOBALS['TL_DCA']['tl_bm_poi']['fields']['type']['options'] ?? [] as $type)
         {
             $types[$type] = $this->translator->trans('tl_bm_poi.' . $type, [], 'contao_default');
@@ -104,6 +111,7 @@ class PoiMapController extends AbstractFrontendModuleController
             {
                 $poiData = StringUtil::deserialize($poi->publishedData);
                 array_push($branches, $poiData['branch']);
+
                 $categories = array_merge($categories, StringUtil::deserialize($poiData['categories'], true));
                 $tags = array_merge($tags, StringUtil::deserialize($poiData['tags'], true));
             }
@@ -115,26 +123,28 @@ class PoiMapController extends AbstractFrontendModuleController
         }
 
         // Create branches filter
-        if($branchesCollection = BranchModel::findMultipleByIds($branches, ['order'=>'title']))
+        if($hasBranchFilter && $branchesCollection = BranchModel::findMultipleByIds($branches, ['order'=>'title']))
         {
             $branches = [];
 
             foreach ($branchesCollection as $branch)
             {
-                $branches[$branch->id] = $branch->title;
+                $this->extendIconPath($branch);
+                $branches[$branch->id] = $branch;
             }
-        }
+        }else $branches = [];
 
         // Create categories filter
-        if($categoryCollection = CategoryModel::findMultipleByIds($categories, ['order'=>'title']))
+        if($hasCategoryFilter && $categoryCollection = CategoryModel::findMultipleByIds($categories, ['order'=>'title']))
         {
             $categories = [];
 
             foreach ($categoryCollection as $category)
             {
-                $categories[$category->id] = $category->title;
+                $this->extendIconPath($category);
+                $categories[$category->id] = $category;
             }
-        }
+        }else $categories = [];
 
         // Create tag and quick filter
         if($tagCollection = TagModel::findMultipleByIds($tags, ['order'=>'title']))
@@ -145,11 +155,12 @@ class PoiMapController extends AbstractFrontendModuleController
             {
                 if($tag->favorite)
                 {
-                    $quickFilter[$tag->id] = $tag->title;
+                    $this->extendIconPath($tag);
+                    $quickFilter[$tag->id] = $tag;
                     continue;
                 }
 
-                $tags[$tag->id] = $tag->title;
+                $tags[$tag->id] = $tag;
             }
         }
 
@@ -159,6 +170,8 @@ class PoiMapController extends AbstractFrontendModuleController
         $this->template->tagFilterLabel = $this->translator->trans('tl_bm_poi.tagFilterLabel', [], 'contao_default');
 
         $this->template->typeFilter = $types;
+        $this->template->hasBranchFilter = $hasBranchFilter;
+        $this->template->hasCategoryFilter = $hasCategoryFilter;
         $this->template->branchFilter = $branches;
         $this->template->categoryFilter = $categories;
         $this->template->tagFilter = $tags;
@@ -188,6 +201,7 @@ class PoiMapController extends AbstractFrontendModuleController
         }
 
         $this->template->mapOptions = json_encode([
+            'gestureHandling' => true,
             'zoom'    => (int) $this->model->map_zoom ?: 6,
             'maxZoom' => (int) $this->model->map_max ?: 10,
             'minZoom' => (int) $this->model->map_min ?: 4,
@@ -234,5 +248,19 @@ class PoiMapController extends AbstractFrontendModuleController
                 'url'        => POI::getUrl($poi)
             ]
         ];
+    }
+
+    /**
+     * Extends the icon path to the model.
+     */
+    protected function extendIconPath(Model $model): void
+    {
+        $model->hasIcon = false;
+
+        if($model->iconSRC && ($file = FilesModel::findByUuid($model->iconSRC)))
+        {
+            $model->icon = '/' . $file->path;
+            $model->hasIcon = true;
+        }
     }
 }

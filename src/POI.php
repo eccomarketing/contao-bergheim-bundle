@@ -143,6 +143,7 @@ class POI extends System
         if ($dc->activeRecord->publishData || empty($dc->activeRecord->publishedData))
         {
             $arrData = $dc->activeRecord->row();
+            unset($arrData['publishedData']);
 
             $this->Database->prepare("UPDATE tl_bm_poi SET publishedData=?, publishData='', dirty='' WHERE id=?")
                 ->execute(serialize($arrData), $dc->activeRecord->id);
@@ -154,8 +155,23 @@ class POI extends System
         }
     }
 
+    public static function generateLink($strLink, $objPoi): string
+    {
+        return sprintf(
+            '<a href="%s" title="%s">%s</a>',
+            self::getUrl($objPoi),
+            StringUtil::specialchars(sprintf($GLOBALS['TL_LANG']['MSC']['readMore'], $objPoi->title), true),
+            $strLink
+        );
+    }
+
     public static function getUrl($objPoi): string
     {
+        if($objPoi->redirectUrl ?? false)
+        {
+            return $objPoi->redirectUrl;
+        }
+
         $objBranch = BranchModel::findByPk($objPoi->branch);
         $objPage = $objBranch->getRelated('jumpTo');
 
@@ -203,7 +219,7 @@ class POI extends System
     public static function determineGeoData($street, $houseNumber, $postal, $city)
     {
         // Return if not possible or allowed
-        if (!Config::get('googleApiToken'))
+        if (!$token = Config::get('bergheimGoogleApiToken'))
         {
             return false;
         }
@@ -214,7 +230,7 @@ class POI extends System
         }
 
         $strAddress = urlencode(sprintf('%s %s, %s %s', $street, $houseNumber, $postal, $city));
-        $strUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$strAddress.'&key='.Config::get('googleApiToken');
+        $strUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$strAddress.'&key='.$token;
 
         $arrContent = json_decode(self::getFileContent($strUrl));
 

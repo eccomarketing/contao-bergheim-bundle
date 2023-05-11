@@ -39,12 +39,6 @@ export default class Marker extends LeafletMarker
 
     private bindEvents(): void
     {
-        this.onPopupOpen()
-        //this.on('click', () => document.location.href = this.properties.url)
-    }
-
-    private onPopupOpen()
-    {
         this.on('popupopen', async (e) => {
             await this.getPopupData(this.properties.id)
         })

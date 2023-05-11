@@ -14,6 +14,7 @@ use Contao\ModuleModel;
 use Contao\StringUtil;
 use Contao\Template;
 use Oveleon\ContaoBergheimBundle\Model\PoiModel;
+use Oveleon\ContaoBergheimBundle\POI;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Security;
@@ -206,7 +207,18 @@ class PoiFormController extends AbstractFrontendModuleController
                 $this->poi->message = '';
             }
 
+            // Determine geo data if necessary
+            if (empty($this->poi->lat) || empty($this->poi->lng))
+            {
+                if ($geoData = POI::determineGeoData($this->poi->street, $this->poi->houseNumber, $this->poi->postal, $this->poi->city))
+                {
+                    $this->poi->lat = $geoData['lat'];
+                    $this->poi->lng = $geoData['lng'];
+                }
+            }
+
             // Save model
+            $this->poi->dirty = 1;
             $this->poi->save();
 
             // Show message

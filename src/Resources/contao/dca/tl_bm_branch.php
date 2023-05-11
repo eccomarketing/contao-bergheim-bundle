@@ -112,7 +112,7 @@ $GLOBALS['TL_DCA']['tl_bm_branch'] = array
         (
             'exclude'                 => true,
             'inputType'               => 'fileTree',
-            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'mandatory'=>true, 'tl_class'=>'clr'],
+            'eval'                    => ['filesOnly'=>true, 'fieldType'=>'radio', 'tl_class'=>'clr'],
             'sql'                     => "binary(16) NULL"
         ),
         'categories' => array
