@@ -167,6 +167,11 @@ class POI extends System
 
     public static function getUrl($objPoi): string
     {
+        if($objPoi->redirectUrl ?? false)
+        {
+            return $objPoi->redirectUrl;
+        }
+
         $objBranch = BranchModel::findByPk($objPoi->branch);
         $objPage = $objBranch->getRelated('jumpTo');
 
@@ -214,7 +219,7 @@ class POI extends System
     public static function determineGeoData($street, $houseNumber, $postal, $city)
     {
         // Return if not possible or allowed
-        if (!Config::get('googleApiToken'))
+        if (!$token = Config::get('bergheimGoogleApiToken'))
         {
             return false;
         }
@@ -225,7 +230,7 @@ class POI extends System
         }
 
         $strAddress = urlencode(sprintf('%s %s, %s %s', $street, $houseNumber, $postal, $city));
-        $strUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$strAddress.'&key='.Config::get('googleApiToken');
+        $strUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$strAddress.'&key='.$token;
 
         $arrContent = json_decode(self::getFileContent($strUrl));
 

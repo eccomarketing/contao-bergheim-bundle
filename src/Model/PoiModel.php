@@ -12,6 +12,7 @@ use Contao\Model;
  * @property integer           $id
  * @property integer           $tstamp
  * @property string            $type
+ * @property string            $redirectUrl
  * @property string            $title
  * @property integer           $author
  * @property string            $pageTitle

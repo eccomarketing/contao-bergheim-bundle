@@ -94,9 +94,25 @@
     </div>
 
     <?php if ($this->addMap): ?>
-        <div class="map-container">
-            <embed width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $this->lng1 ?>%2C<?= $this->lat1 ?>%2C<?= $this->lng2 ?>%2C<?= $this->lat2 ?>&amp;layer=mapnik&amp;marker=<?= $this->lat ?>%2C<?= $this->lng ?>" style="border: 1px solid black; pointer-events: none;" />
+        <div class="map-container" id="inline-osm-wrap">
+            <embed id="inline-osm-map" width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $this->lng1 ?>%2C<?= $this->lat1 ?>%2C<?= $this->lng2 ?>%2C<?= $this->lat2 ?>&amp;layer=mapnik&amp;marker=<?= $this->lat ?>%2C<?= $this->lng ?>" style="border: 1px solid black; pointer-events: none;" />
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                cookiebar.addModule(6, () => {
+                    const map = document.getElementById('inline-osm-map')
+
+                    map.setAttribute('src', map.dataset.src)
+                }, {
+                    selector: '#inline-osm-wrap',
+                    message: 'Bitte akzeptieren Sie den Dienst von OpenStreetMap.',
+                    button: {
+                        show: true
+                    }
+                });
+            });
+        </script>
     <?php endif; ?>
 
 <?php $this->endblock(); ?>

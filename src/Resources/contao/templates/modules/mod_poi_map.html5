@@ -86,11 +86,21 @@
     </div>
 
     <script>
-        const poiMap = new PoiMap({
-            mapId: 'poi-map',
-            mapOptions: <?=$this->mapOptions?>,
-            geoJson: <?=$this->geoJson?>,
-            filterSelector: 'input[data-filter]'
+        document.addEventListener("DOMContentLoaded", function() {
+            cookiebar.addModule(6, () => {
+                const poiMap = new PoiMap({
+                    mapId: 'poi-map',
+                    mapOptions: <?=$this->mapOptions?>,
+                    geoJson: <?=$this->geoJson?>,
+                    filterSelector: 'input[data-filter]'
+                });
+            }, {
+                selector: '.poi-map-container',
+                message: 'Bitte akzeptieren Sie den Dienst von OpenStreetMap, um diesen Service zu nutzen.',
+                button: {
+                    show: true
+                }
+            });
         });
     </script>
 
