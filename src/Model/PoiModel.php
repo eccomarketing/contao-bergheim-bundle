@@ -234,6 +234,37 @@ class PoiModel extends Model
     }
 
     /**
+     * Find published poi items
+     *
+     * @param integer $intLimit    An optional limit
+     * @param integer $intOffset   An optional offset
+     * @param array   $arrOptions  An optional options array
+     *
+     * @return Model\Collection|PoiModel[]|PoiModel|null A collection of models or null if there are no poi records
+     */
+    public static function findPublishedWithGeoData($intLimit=0, $intOffset=0, array $arrOptions=array())
+    {
+        $t = static::$strTable;
+        $arrColumns = array("$t.lat!='' AND $t.lng!=''");
+
+        if (!static::isPreviewMode($arrOptions))
+        {
+            $time = Date::floorToMinute();
+            $arrColumns[] = "$t.published='1' AND ($t.start='' OR $t.start<='$time') AND ($t.stop='' OR $t.stop>'$time')";
+        }
+
+        if (!isset($arrOptions['order']))
+        {
+            $arrOptions['order']  = "$t.tstamp DESC";
+        }
+
+        $arrOptions['limit']  = $intLimit;
+        $arrOptions['offset'] = $intOffset;
+
+        return static::findBy($arrColumns, null, $arrOptions);
+    }
+
+    /**
      * Count published poi items
      *
      * @param array   $arrOptions  An optional options array

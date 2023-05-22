@@ -110,6 +110,13 @@ class PoiMapController extends AbstractFrontendModuleController
             foreach ($poiCollection as $poi)
             {
                 $poiData = StringUtil::deserialize($poi->publishedData);
+
+                // Skip poi if no geo data set
+                if (!$poiData['lat'] || !$poiData['lng'])
+                {
+                    continue;
+                }
+
                 array_push($branches, $poiData['branch']);
 
                 $categories = array_merge($categories, StringUtil::deserialize($poiData['categories'], true));
