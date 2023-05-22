@@ -69,11 +69,21 @@ export default class Filter
 
     private checkCumulative(checkValue, type: FilterType): boolean
     {
+        if(!this.groups.hasOwnProperty(type))
+        {
+            return true
+        }
+
         return !!this.groups[type].filter(input => input.checked && input.value === checkValue).length
     }
 
     private checkDistinctive(checkValue, type: FilterType): boolean
     {
+        if(!this.groups.hasOwnProperty(type))
+        {
+            return true
+        }
+
         const group = this.groups[type]
 
         const found = group.filter(input => input.checked && checkValue.includes(parseInt(input.value)))

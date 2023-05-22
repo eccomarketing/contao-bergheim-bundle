@@ -5,8 +5,61 @@
   <?php endif; ?>
 
   <div class="poi_data">
-    <p><?= $this->title ?></p>
-    <p><?= $this->openingHours ?></p>
-    <p><?= $this->href ?></p>
+    <h3><?= $this->title ?></h3>
+
+    <?php if($this->hasOpeningHours): ?>
+      <h5>Öffnungszeiten</h5>
+      <table>
+      <?php if($this->openingHoursMonday): ?>
+        <tr>
+          <td>Montag</td>
+          <td><?= $this->openingHoursMonday ?></td>
+        </tr>
+      <?php endif; ?>
+      <?php if($this->openingHoursTuesday): ?>
+        <tr>
+          <td>Dienstag</td>
+          <td><?= $this->openingHoursTuesday ?></td>
+        </tr>
+      <?php endif; ?>
+      <?php if($this->openingHoursWednesday): ?>
+        <tr>
+          <td>Mittwoch</td>
+          <td><?= $this->openingHoursWednesday ?></td>
+        </tr>
+      <?php endif; ?>
+      <?php if($this->openingHoursThursday): ?>
+        <tr>
+          <td>Donnerstag</td>
+          <td><?= $this->openingHoursThursday ?></td>
+        </tr>
+      <?php endif; ?>
+      <?php if($this->openingHoursFriday): ?>
+        <tr>
+          <td>Freitag</td>
+          <td><?= $this->openingHoursFriday ?></td>
+        </tr>
+      <?php endif; ?>
+      <?php if($this->openingHoursSaturday): ?>
+        <tr>
+          <td>Samstag</td>
+          <td><?= $this->openingHoursSaturday ?></td>
+        </tr>
+      <?php endif; ?>
+      <?php if($this->openingHoursSunday): ?>
+        <tr>
+          <td>Sonntag</td>
+          <td><?= $this->openingHoursSunday ?></td>
+        </tr>
+      <?php endif; ?>
+      <?php if($this->openingHours): ?>
+        <tr>
+          <td colspan="2"><?= $this->openingHours ?></td>
+        </tr>
+      <?php endif; ?>
+      </table>
+    <?php endif; ?>
+
+    <p><?= $this->detailLink ?></p>
   </div>
 </div>

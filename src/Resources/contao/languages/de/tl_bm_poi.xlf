@@ -2,6 +2,10 @@
 <xliff version="1.1">
   <file datatype="php" original="src/Resources/contao/languages/en/tl_bm_poi.php" source-language="en" target-language="de">
     <body>
+      <trans-unit id="tl_bm_poi.redirect_legend">
+        <source>Weiterleitung</source>
+        <target>Weiterleitung</target>
+      </trans-unit>
       <trans-unit id="tl_bm_poi.poi">
         <source>Point of Interest</source>
         <target>Point of Interest</target>
@@ -49,6 +53,14 @@
       <trans-unit id="tl_bm_poi.type.1">
         <source>Please choose the type of poi record.</source>
         <target>Bitte wählen Sie den Typ des POI-Datensatzes.</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.redirectUrl.0">
+        <source>Weiterleitung</source>
+        <target>Weiterleitung</target>
+      </trans-unit>
+      <trans-unit id="tl_bm_poi.redirectUrl.1">
+        <source>Bei Eingabe einer Weiterleitung wird auf diese Seite gesprungen, statt auf die Detailseite.</source>
+        <target>Bei Eingabe einer Weiterleitung wird auf diese Seite gesprungen, statt auf die Detailseite.</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.pageTitle.0">
         <source>Meta title</source>
@@ -204,7 +216,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHours.0">
         <source>Opening hours (Freitext)</source>
-        <target>Öfnungszeiten (Freitext)</target>
+        <target>Öffnungszeiten (Freitext)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHours.1">
         <source>Please enter the opening hours.</source>
@@ -212,7 +224,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursMonday.0">
         <source>Opening hours (Monday)</source>
-        <target>Öfnungszeiten (Montag)</target>
+        <target>Öffnungszeiten (Montag)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursMonday.1">
         <source>Please enter the opening hours.</source>
@@ -220,7 +232,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursTuesday.0">
         <source>Opening hours (Tuesday)</source>
-        <target>Öfnungszeiten (Diesntag)</target>
+        <target>Öffnungszeiten (Dienstag)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursTuesday.1">
         <source>Please enter the opening hours.</source>
@@ -228,7 +240,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursWednesday.0">
         <source>Opening hours (Wednesday)</source>
-        <target>Öfnungszeiten (Mittwoch)</target>
+        <target>Öffnungszeiten (Mittwoch)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursWednesday.1">
         <source>Please enter the opening hours.</source>
@@ -236,7 +248,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursThursday.0">
         <source>Opening hours (Thursday)</source>
-        <target>Öfnungszeiten (Donnerstag)</target>
+        <target>Öffnungszeiten (Donnerstag)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursThursday.1">
         <source>Please enter the opening hours.</source>
@@ -244,7 +256,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursFriday.0">
         <source>Opening hours (Friday)</source>
-        <target>Öfnungszeiten (Freitag)</target>
+        <target>Öffnungszeiten (Freitag)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursFriday.1">
         <source>Please enter the opening hours.</source>
@@ -252,7 +264,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursSaturday.0">
         <source>Opening hours (Saturday)</source>
-        <target>Öfnungszeiten (Samstag)</target>
+        <target>Öffnungszeiten (Samstag)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursSaturday.1">
         <source>Please enter the opening hours.</source>
@@ -260,7 +272,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursSunday.0">
         <source>Opening hours (Sunday)</source>
-        <target>Öfnungszeiten (Sonntag)</target>
+        <target>Öffnungszeiten (Sonntag)</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.openingHoursSunday.1">
         <source>Please enter the opening hours.</source>
@@ -272,7 +284,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.lat.1">
         <source>Please enter the latitude.</source>
-        <target>Bitte geben Sie den Breitengrad ein.</target>
+        <target>Bitte geben Sie den Breitengrad ein. ⚠ Bitte Löschen Sie diesen Eintrag vor dem Speichern bei Adressänderung, um diese Werte automatisch generieren zu lassen.</target>
       </trans-unit>
       <trans-unit id="tl_bm_poi.lng.0">
         <source>Longitude</source>
@@ -280,7 +292,7 @@
       </trans-unit>
       <trans-unit id="tl_bm_poi.lng.1">
         <source>Please enter the longitude.</source>
-        <target>Bitte geben Sie den Längengrad ein.</target>
+        <target>Bitte geben Sie den Längengrad ein. ⚠ Bitte Löschen Sie diesen Eintrag vor dem Speichern bei Adressänderung, um diese Werte automatisch generieren zu lassen.</target>
       </trans-unit>
 
       <trans-unit id="tl_bm_poi.message.0">
@@ -486,6 +498,10 @@
         <target>Ihr Schaufenster wurde erfolgreich aktualisiert. Sobald Ihre Daten geprüft wurden, wird Ihr Schaufenster automatisch mit den neuen Daten veröffentlicht.</target>
       </trans-unit>
 
+      <trans-unit id="tl_bm_poi.detailLinkTitle">
+        <source>Details</source>
+        <target>Details</target>
+      </trans-unit>
       <trans-unit id="tl_bm_poi.typeFilterLabel">
         <source>Filtern</source>
         <target>Filtern</target>

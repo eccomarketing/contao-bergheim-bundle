@@ -1,0 +1,30 @@
+.poi-map-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+.poi-map-container .quick-filter {
+  width: 100%;
+}
+.poi-map-container .filter {
+  width: 30%;
+}
+.poi-map-container #poi-map {
+  width: 70%;
+  min-height: 500px;
+}
+.poi-map-container .cc-module {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  line-height: 1.4;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/*# sourceMappingURL=map.css.map */
