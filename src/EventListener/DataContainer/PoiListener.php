@@ -62,7 +62,7 @@ class PoiListener
         {
             $output[] = vsprintf("%s\n%s", [
                 date(Config::get("datimFormat"), $message['tstamp']),
-                strip_tags(str_replace(['<br>', '<br/>', '<br />'], "\n", $message['message']))
+                strip_tags(str_replace(['<br>', '<br/>', '<br />'], "\n", html_entity_decode($message['message'])))
             ]);
         }
 
