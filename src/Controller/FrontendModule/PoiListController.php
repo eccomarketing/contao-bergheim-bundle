@@ -181,7 +181,7 @@ class PoiListController extends AbstractFrontendModuleController
                 case 'categories':
                     $arrCategories = StringUtil::deserialize($this->model->poi_categories, true);
 
-                    return PoiModel::countPublishedByCategoriesAndTags($arrCategories, $arrTags) ?? 0;
+                    return PoiModel::countPublishedByCategoriesAndTags($arrCategories, $arrTags);
             }
 
             return PoiModel::countPublishedByTags($arrTags);
@@ -196,10 +196,10 @@ class PoiListController extends AbstractFrontendModuleController
             case 'categories':
                 $arrCategories = StringUtil::deserialize($this->model->poi_categories, true);
 
-                return PoiModel::countPublishedByCategories($arrCategories) ?? 0;
+                return PoiModel::countPublishedByCategories($arrCategories);
         }
 
-        return PoiModel::countPublished() ?? 0;
+        return PoiModel::countPublished();
     }
 
     /**

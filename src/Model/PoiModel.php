@@ -397,7 +397,7 @@ class PoiModel extends Model
     {
         if (empty($arrBranches))
         {
-            return null;
+            return 0;
         }
 
         $t = static::$strTable;
@@ -476,7 +476,7 @@ class PoiModel extends Model
     {
         if (empty($arrBranches))
         {
-            return null;
+            return 0;
         }
 
         $t = static::$strTable;
@@ -559,7 +559,7 @@ class PoiModel extends Model
     {
         if (empty($arrCategories))
         {
-            return null;
+            return 0;
         }
 
         $t = static::$strTable;
@@ -579,7 +579,7 @@ class PoiModel extends Model
 
         if ($objResult->numRows < 1)
         {
-            return null;
+            return 0;
         }
 
         return $objResult->numRows;
@@ -600,7 +600,7 @@ class PoiModel extends Model
     {
         if (empty($arrCategories))
         {
-            return null;
+            return 0;
         }
 
         $t = static::$strTable;
@@ -630,7 +630,7 @@ class PoiModel extends Model
 
         if ($objResult->numRows < 1)
         {
-            return null;
+            return 0;
         }
 
         return Model\Collection::createFromDbResult($objResult, $t);
@@ -649,7 +649,7 @@ class PoiModel extends Model
     {
         if (empty($arrCategories))
         {
-            return null;
+            return 0;
         }
 
         $t = static::$strTable;
@@ -669,7 +669,7 @@ class PoiModel extends Model
 
         if ($objResult->numRows < 1)
         {
-            return null;
+            return 0;
         }
 
         return $objResult->numRows;
