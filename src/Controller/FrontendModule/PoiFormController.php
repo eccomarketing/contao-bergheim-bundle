@@ -194,7 +194,7 @@ class PoiFormController extends AbstractFrontendModuleController
         if ($this->form->validate())
         {
             // Handle messages
-            if($message = $this->form->fetch('message'))
+            if($this->form->hasFormField('message') && $message = $this->form->fetch('message'))
             {
                 $messages = json_decode($this->poi->messages ?? '', true);
                 $messages[] = [
