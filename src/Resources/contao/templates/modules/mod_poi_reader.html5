@@ -100,7 +100,7 @@
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                cookiebar.addModule(6, () => {
+                cookiebar.addModule(5, () => {
                     const map = document.getElementById('inline-osm-map')
 
                     map.setAttribute('src', map.dataset.src)

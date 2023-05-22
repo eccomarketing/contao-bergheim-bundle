@@ -87,7 +87,7 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            cookiebar.addModule(6, () => {
+            cookiebar.addModule(5, () => {
                 const poiMap = new PoiMap({
                     mapId: 'poi-map',
                     mapOptions: <?=$this->mapOptions?>,
