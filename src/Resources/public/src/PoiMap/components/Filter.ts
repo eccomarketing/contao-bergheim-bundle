@@ -59,7 +59,7 @@ export default class Filter
                 this.checkCumulative(marker.properties.type, FilterType.TYPE) &&
                 this.checkDistinctive(marker.properties.categories, FilterType.CATEGORY) &&
                 this.checkDistinctive(marker.properties.tags, FilterType.TAG) &&
-                this.checkDistinctive(marker.properties.branch, FilterType.BRANCH)
+                this.checkDistinctive([marker.properties.branch], FilterType.BRANCH)
             )
                 App.map.cluster.addLayer(marker)
             else
