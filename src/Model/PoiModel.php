@@ -230,6 +230,11 @@ class PoiModel extends Model
         $arrOptions['limit']  = $intLimit;
         $arrOptions['offset'] = $intOffset;
 
+        if (count($arrColumns) === 0)
+        {
+            return static::findAll($arrColumns);
+        }
+
         return static::findBy($arrColumns, null, $arrOptions);
     }
 
@@ -280,6 +285,11 @@ class PoiModel extends Model
         {
             $time = Date::floorToMinute();
             $arrColumns[] = "$t.published='1' AND ($t.start='' OR $t.start<='$time') AND ($t.stop='' OR $t.stop>'$time')";
+        }
+
+        if (count($arrColumns) === 0)
+        {
+            return static::countAll();
         }
 
         return static::countBy($arrColumns, null, $arrOptions);
