@@ -249,7 +249,7 @@ class PoiListController extends AbstractFrontendModuleController
         $arrPoiData = StringUtil::deserialize($objPoi->publishedData, true);
         $objPoi = (object) $arrPoiData;
 
-        $objTemplate = new FrontendTemplate($this->model->pmPoiTemplate ?: 'poi_item_default');
+        $objTemplate = new FrontendTemplate($this->model->poi_template ?: 'poi_item_default');
         $objTemplate->setData($arrPoiData);
 
         if ($objPoi->cssClass)
